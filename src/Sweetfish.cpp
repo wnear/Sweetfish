@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
   // Load Translations
   QTranslator translator;
   QString locale = QLocale::system().name();
+  locale = "en_AU";
   if (!translator.load(QString("/usr/lib/") + QString(APP_NAME).toLower() +
                        QString("/locales/") + locale)) { // RPMでの配置
     translator.load(QString("locales/") + locale);
