@@ -1,0 +1,112 @@
+[
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build -I/home/bill/src_project/workspace-mastondon/Sweetfish -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/sweetfish.dir/sweetfish_autogen/mocs_compilation.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/mocs_compilation.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/mocs_compilation.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build -I/home/bill/src_project/workspace-mastondon/Sweetfish -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/sweetfish.dir/src/Sweetfish.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/Sweetfish.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/Sweetfish.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build -I/home/bill/src_project/workspace-mastondon/Sweetfish -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/sweetfish.dir/sweetfish_autogen/WX4ZWIJTML/qrc_icon.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/WX4ZWIJTML/qrc_icon.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/WX4ZWIJTML/qrc_icon.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build -I/home/bill/src_project/workspace-mastondon/Sweetfish -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/sweetfish.dir/sweetfish_autogen/GUUUWOOYRE/qrc_ui-icon.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/GUUUWOOYRE/qrc_ui-icon.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/sweetfish_autogen/GUUUWOOYRE/qrc_ui-icon.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Network",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_NETWORK_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Network -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/Network -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Network/Network_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtNetwork -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -fPIC -std=c++17 -o CMakeFiles/Network.dir/Network_autogen/mocs_compilation.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Network/Network_autogen/mocs_compilation.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Network/Network_autogen/mocs_compilation.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Network",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_NETWORK_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Network -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/Network -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Network/Network_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtNetwork -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -fPIC -std=c++17 -o CMakeFiles/Network.dir/Network.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/Network/Network.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/Network/Network.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Setting",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Setting -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/Setting -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Setting/Setting_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -fPIC -std=c++17 -o CMakeFiles/Setting.dir/Setting_autogen/mocs_compilation.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Setting/Setting_autogen/mocs_compilation.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Setting/Setting_autogen/mocs_compilation.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Setting",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Setting -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/Setting -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Setting/Setting_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -fPIC -std=c++17 -o CMakeFiles/Setting.dir/Setting.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/Setting/Setting.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/Setting/Setting.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_NETWORK_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon/Mastodon_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtNetwork -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -fPIC -std=c++17 -o CMakeFiles/Mastodon.dir/Mastodon_autogen/mocs_compilation.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon/Mastodon_autogen/mocs_compilation.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon/Mastodon_autogen/mocs_compilation.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_NETWORK_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon/Mastodon_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtNetwork -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -fPIC -std=c++17 -o CMakeFiles/Mastodon.dir/MastodonAPI.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon/MastodonAPI.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon/MastodonAPI.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_NETWORK_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon/Mastodon_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtNetwork -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -fPIC -std=c++17 -o CMakeFiles/Mastodon.dir/TootData.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon/TootData.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon/TootData.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_NETWORK_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon/Mastodon_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtNetwork -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -fPIC -std=c++17 -o CMakeFiles/Mastodon.dir/Streamer.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon/Streamer.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon/Streamer.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_NETWORK_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/Mastodon/Mastodon_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtNetwork -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -fPIC -std=c++17 -o CMakeFiles/Mastodon.dir/MediaUpload.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon/MediaUpload.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/Mastodon/MediaUpload.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/UI.dir/UI_autogen/mocs_compilation.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/mocs_compilation.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/mocs_compilation.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/UI.dir/MainWindow.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/MainWindow.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/MainWindow.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/UI.dir/ImageLabel.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/ImageLabel.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/ImageLabel.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/UI.dir/TextLabel.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/TextLabel.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/TextLabel.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/UI.dir/TootContent.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/TootContent.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/TootContent.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/UI.dir/TootInfo.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/TootInfo.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/TootInfo.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/UI.dir/ImageViewer.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/ImageViewer.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/ImageViewer.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/UI.dir/VideoPlayer.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/VideoPlayer.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/VideoPlayer.cpp"
+},
+{
+  "directory": "/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI",
+  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_LIB -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI -I/home/bill/src_project/workspace-mastondon/Sweetfish/build/src/UI/UI_autogen/include -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -isystem /usr/include/phonon4qt5 -isystem /usr/include/qt/QtNetwork -g -fPIC -std=c++17 -o CMakeFiles/UI.dir/UserInfoBox.cpp.o -c /home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/UserInfoBox.cpp",
+  "file": "/home/bill/src_project/workspace-mastondon/Sweetfish/src/UI/UserInfoBox.cpp"
+}
+]

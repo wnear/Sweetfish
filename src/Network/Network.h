@@ -10,6 +10,7 @@ class QNetworkRequest;
 class QNetworkReply;
 class QUrl;
 class QByteArray;
+class QNetworkDiskCache;
 
 class Network {
 public:
@@ -26,5 +27,6 @@ public:
 
 private:
   QNetworkAccessManager qnet;
+  QNetworkDiskCache *cache{nullptr};
   inline QByteArray getUserAgent() const;
 };

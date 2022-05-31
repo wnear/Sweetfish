@@ -134,7 +134,7 @@ public:
   explicit TootData(const QJsonObject &target);
   virtual ~TootData();
 
-  bool isEmpty() const { return id.isEmpty(); };
+  bool isEmpty() const { return m_id.isEmpty(); };
   bool isBoosted() const;
   bool isFavourited() const;
   bool isTootOwner() const;
@@ -142,35 +142,35 @@ public:
   bool iSDirectMessage() const;
 
   // getter
-  QByteArray getId() const { return id; };
+  QByteArray getId() const { return m_id; };
   QString getApplicationName() const;
   QString getApplicationSite() const;
-  const TootAccountData &getAccountData() const { return account; };
+  const TootAccountData &getAccountData() const { return m_account; };
   const TootAccountData &getOriginalAccountData() const;
-  TootData *getBoostedData() const { return reblog; };
-  const TootUrlData &getUrlData() const { return url_list; };
-  const TootMediaData &getMediaData() const { return media; };
-  const TootCardData &getCardData() const { return card; };
-  QDateTime getDateTime() const { return created_at; };
-  QString getContent() const { return content; };
+  TootData *getBoostedData() const { return m_reblog; };
+  const TootUrlData &getUrlData() const { return m_url_list; };
+  const TootMediaData &getMediaData() const { return m_media; };
+  const TootCardData &getCardData() const { return m_card; };
+  QDateTime getDateTime() const { return m_created_at; };
+  QString getContent() const { return m_content; };
 
   // setter
   static void addOwnerUserId(const QByteArray &id);
 
 private:
-  QByteArray id;
-  QDateTime created_at;
-  QString uri;
-  QString url;
-  QString content;
-  QPair<QString, QString> application; // via
-  qint64 flag;
+  QByteArray m_id;
+  QDateTime m_created_at;
+  QString m_uri;
+  QString m_url;
+  QString m_content;
+  QPair<QString, QString> m_application; // via
+  qint64 m_flag;
 
-  TootAccountData account;
-  TootUrlData url_list;
-  TootMediaData media;
-  TootCardData card;
-  TootData *reblog = nullptr;
+  TootAccountData m_account;
+  TootUrlData m_url_list;
+  TootMediaData m_media;
+  TootCardData m_card;
+  TootData *m_reblog = nullptr;
 
   void analyzeContent(QString content);
 
@@ -198,15 +198,15 @@ public:
   TootNotificationData(){};
   explicit TootNotificationData(const QJsonObject &target);
 
-  bool isEmpty() const { return (type == Event::NoEvent); };
+  bool isEmpty() const { return (m_type == Event::NoEvent); };
 
   // getter
-  Event getType() const { return type; };
-  const TootAccountData &getAccount() const { return account; };
-  const TootData &getStatus() const { return status; };
+  Event getType() const { return m_type; };
+  const TootAccountData &getAccount() const { return m_account; };
+  const TootData &getStatus() const { return m_status; };
 
 private:
-  TootAccountData account;
-  TootData status;
-  Event type;
+  TootAccountData m_account;
+  TootData m_status;
+  Event m_type;
 };

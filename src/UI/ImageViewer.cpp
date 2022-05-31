@@ -104,6 +104,10 @@ void ImageViewer::createButtons(QVBoxLayout *main_layout) {
 void ImageViewer::setImage(const QString &url) {
   QNetworkReply *rep = net.get(url); //:origをつけると原寸大だが時間がかかる
   connect(rep, &QNetworkReply::finished, iml, &ImageLabel::setPixmapByNetwork);
+  connect(rep, &QNetworkReply::finished, [rep](){
+              if(rep->attribute(QNetworkRequest::SourceIsFromCacheAttribute).toBool())
+                  qDebug()<<"Reply from cache"<<__LINE__;
+          });
   connect(rep, &QNetworkReply::finished, this, &ImageViewer::fit);
   connect(this, &ImageViewer::destroyed, rep,
           &QNetworkReply::deleteLater); // abortも入れるべきか?

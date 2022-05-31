@@ -28,8 +28,9 @@ MainWindow::MainWindow() : QMainWindow() {
   QWidget *center = new QWidget;         //センターウィジット
   main_layout = new QVBoxLayout(center); //メインレイアウト
   QPalette Palette = center->palette();
-  Palette.setColor(QPalette::Window, Qt::black); //背景を黒く
-  Palette.setColor(QPalette::WindowText, Qt::white);
+  //Palette.setColor(QPalette::Window, Qt::black); //背景を黒く
+  //Palette.setColor(QPalette::WindowText, Qt::white);
+  //@TODO: center to be tabbed widget.
   center->setAutoFillBackground(true);
   center->setPalette(Palette);
   setCentralWidget(center);

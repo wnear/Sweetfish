@@ -46,9 +46,9 @@ TootAccountData::TootAccountData(const QJsonObject &target) {
  * 概要:投稿したユーザ情報を返す。ブーストなどはブースト元のアカウント情報を返す。
  */
 const TootAccountData &TootData::getOriginalAccountData() const {
-  if (reblog != nullptr)
-    return reblog->account;
-  return account;
+  if (m_reblog != nullptr)
+    return reblog->m_account;
+  return m_account;
 }
 
 TootRelationshipData::TootRelationshipData(const QJsonObject &target) {
@@ -102,100 +102,100 @@ TootMediaData::TootMediaData(const QJsonArray &target) {
 TootData::TootData(const QJsonObject &target) {
   if (target.find("id") == target.end())
     return;
-  id = target["id"].toString().toLatin1();
-  created_at.setTimeSpec(Qt::UTC);
-  created_at =
+  m_id = target["id"].toString().toLatin1();
+  m_created_at.setTimeSpec(Qt::UTC);
+  m_created_at =
       QDateTime::fromString(target["created_at"].toString(), Qt::ISODateWithMs);
 
   QJsonObject application_json = target["application"].toObject();
-  application = QPair<QString, QString>(application_json["name"].toString(),
+  m_application = QPair<QString, QString>(application_json["name"].toString(),
                                         application_json["website"].toString());
-  uri = target["uri"].toString();
-  url = target["url"].toString();
+  m_uri = target["uri"].toString();
+  m_url = target["url"].toString();
   analyzeContent(target["content"].toString());
 
-  account = TootAccountData(target["account"].toObject());
-  media = TootMediaData(target["media_attachments"].toArray());
+  m_account = TootAccountData(target["account"].toObject());
+  m_media = TootMediaData(target["media_attachments"].toArray());
   if (!target["card"].isNull()) {
-    card = TootCardData(target["card"].toObject());
+    m_card = TootCardData(target["card"].toObject());
   }
 
-  flag = 0;
+  m_flag = 0;
   if (target["reblogged"].toBool()) {
-    flag |= 1 << 0; //一般化
+    m_flag |= 1 << 0; //一般化
   }
   if (target["favourited"].toBool()) {
-    flag |= 1 << 1;
+    m_flag |= 1 << 1;
   }
-  if (static_owner_user_id_list.contains(account.getId())) {
-    flag |= 1 << 2;
+  if (static_owner_user_id_list.contains(m_account.getId())) {
+    m_flag |= 1 << 2;
   }
   if (target["visibility"].toString() == "private") {
-    flag |= 1 << 3;
+    m_flag |= 1 << 3;
   }
   if (target["visibility"].toString() == "direct") {
-    flag |= 1 << 4;
+    m_flag |= 1 << 4;
   }
 
   if (QJsonValue reblog_status = target["reblog"]; reblog_status.isObject()) {
     QJsonObject reblog_object = reblog_status.toObject(); // constならいらない
-    reblog = new TootData(reblog_object);
-    media = reblog->getMediaData(); //扱いやすいように
-    content = reblog->getContent();
+    m_reblog = new TootData(reblog_object);
+    m_media = m_reblog->getMediaData(); //扱いやすいように
+    m_content = m_reblog->getContent();
   }
   //製作中
 }
 
-TootData::~TootData() { delete reblog; }
+TootData::~TootData() { delete m_reblog; }
 
 /*
  * 引数:なし
  * 戻値:bool(ブーストしていたらtrue、それ以外はfalse)
  * 概要:自分がブーストしているか返す。
  */
-bool TootData::isBoosted() const { return flag & (1 << 0); }
+bool TootData::isBoosted() const { return m_flag & (1 << 0); }
 
 /*
  * 引数:なし
  * 戻値:bool(お気に入りに登録していたらtrue、それ以外はfalse)
  * 概要:自分がお気に入りに登録しているか返す。
  */
-bool TootData::isFavourited() const { return flag & (1 << 1); }
+bool TootData::isFavourited() const { return m_flag & (1 << 1); }
 
 /*
  * 引数:なし
  * 戻値:bool(自分の投稿ならtrue、それ以外はfalse)
  * 概要:自分の投稿かどうかを返す。
  */
-bool TootData::isTootOwner() const { return flag & (1 << 2); }
+bool TootData::isTootOwner() const { return m_flag & (1 << 2); }
 
 /*
  * 引数:なし
  * 戻値:bool(非公開の投稿ならtrue、それ以外はfalse)
  * 概要:非公開の投稿(フォローしてないと見れない)かどうかを返す。
  */
-bool TootData::isPrivateToot() const { return flag & (1 << 3); }
+bool TootData::isPrivateToot() const { return m_flag & (1 << 3); }
 
 /*
  * 引数:なし
  * 戻値:bool(ダイレクトメッセージならtrue、それ以外はfalse)
  * 概要:ダイレクトメッセージかどうかを返す。
  */
-bool TootData::iSDirectMessage() const { return flag & (1 << 4); }
+bool TootData::iSDirectMessage() const { return m_flag & (1 << 4); }
 
 /*
  * 引数:なし
  * 戻値:QString(投稿に使用されたアプリケーションの名前)
  * 概要:viaソフトウェアの名前を返す。(空であることあり)
  */
-QString TootData::getApplicationName() const { return application.first; }
+QString TootData::getApplicationName() const { return m_application.first; }
 
 /*
  * 引数:なし
  * 戻値:QString(投稿に使用されたアプリケーションのウェブページのURL)
  * 概要:viaソフトウェアのホームページを返す。(空であることあり)
  */
-QString TootData::getApplicationSite() const { return application.second; }
+QString TootData::getApplicationSite() const { return m_application.second; }
 
 /*
  * 引数:なし
@@ -218,10 +218,10 @@ void TootData::analyzeContent(QString c /*remove使うため参照ではない*/
           .globalMatch(c);
   while (link_tags.hasNext()) {
     QRegularExpressionMatch entry = link_tags.next();
-    url_list.addUrlPair(entry.captured(2), entry.captured(1));
+    m_url_list.addUrlPair(entry.captured(2), entry.captured(1));
   }
   c.replace(QRegExp("<a[^>]* href=\"[^\"]*\"[^>]*>([^<]*)<\\/a>"), "\\1");
-  content = c;
+  m_content = c;
 }
 
 /*
@@ -240,19 +240,19 @@ TootNotificationData::TootNotificationData(const QJsonObject &target) {
 
   // type判定
   if (type_str == "mention") {
-    type = Event::Mention;
+    m_type = Event::Mention;
   } else if (type_str == "reblog") {
-    type = Event::Boost;
+    m_type = Event::Boost;
   } else if (type_str == "favourite") {
-    type = Event::Favourite;
+    m_type = Event::Favourite;
   } else if (type_str == "follow") {
-    type = Event::Follow;
+    m_type = Event::Follow;
   } else {
-    type = Event::NoEvent;
+    m_type = Event::NoEvent;
   }
 
-  account = TootAccountData(target["account"].toObject());
+  m_account = TootAccountData(target["account"].toObject());
   if (target["status"].isObject()) {
-    status = TootData(target["status"].toObject());
+    m_status = TootData(target["status"].toObject());
   }
 }

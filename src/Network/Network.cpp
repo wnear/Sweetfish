@@ -8,8 +8,16 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
+#include <QNetworkDiskCache>
 
-Network::Network() {}
+static QString s_cacheDir = QStringLiteral("/home/bill/Pictures/sweetfish-cache");
+Network::Network() {
+    this->cache = new QNetworkDiskCache(&this->qnet);
+    cache->setCacheDirectory(s_cacheDir);
+    cache->setMaximumCacheSize(100*1024*1024);
+    qnet.setCache(cache);
+
+}
 
 Network::~Network() {}
 
@@ -31,6 +39,7 @@ QNetworkReply *Network::get(const QUrl &url) {
  */
 QNetworkReply *Network::get(QNetworkRequest &req) {
   req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
+    req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
   return qnet.get(req);
 }
 

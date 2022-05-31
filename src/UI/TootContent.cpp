@@ -446,6 +446,7 @@ void TootContent::showPicture(unsigned int index) {
   // "この画像・動画を表示すると気分を害する可能性があります。表示しますか。" ),
   // QMessageBox::Yes | QMessageBox::No, QMessageBox::No ) != QMessageBox::Yes )
   // return;
+qDebug()<<__func__<<__LINE__;
   if (tdata->getMediaData().getEntry(0).getType() == "video") { //動画
     VideoPlayer *player = new VideoPlayer(tdata, root_window, Qt::Window);
     player->show();
@@ -467,7 +468,7 @@ void TootContent::showCardPicture(unsigned int index) {
   // "この画像・動画を表示すると気分を害する可能性があります。表示しますか。" ),
   // QMessageBox::Yes | QMessageBox::No, QMessageBox::No ) != QMessageBox::Yes )
   // return;
-
+    qDebug()<<__func__<<__LINE__;
   ImageViewer *viewer =
       new ImageViewer(QStringList(tdata->getCardData().getPreviewUrl()), index,
                       root_window, Qt::Window);
