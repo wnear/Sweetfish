@@ -47,7 +47,7 @@ TootAccountData::TootAccountData(const QJsonObject &target) {
  */
 const TootAccountData &TootData::getOriginalAccountData() const {
   if (m_reblog != nullptr)
-    return reblog->m_account;
+    return m_reblog->m_account;
   return m_account;
 }
 

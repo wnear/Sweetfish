@@ -28,8 +28,8 @@ MainWindow::MainWindow() : QMainWindow() {
   QWidget *center = new QWidget;         //センターウィジット
   main_layout = new QVBoxLayout(center); //メインレイアウト
   QPalette Palette = center->palette();
-  //Palette.setColor(QPalette::Window, Qt::black); //背景を黒く
-  //Palette.setColor(QPalette::WindowText, Qt::white);
+  Palette.setColor(QPalette::Window, Qt::black); //背景を黒く
+  Palette.setColor(QPalette::WindowText, Qt::white);
   //@TODO: center to be tabbed widget.
   center->setAutoFillBackground(true);
   center->setPalette(Palette);
@@ -46,15 +46,29 @@ MainWindow::MainWindow() : QMainWindow() {
 
   // Stream APIのスレッド
   timeline_streamer = new Streamer; //親がいるとスレッドが動かせない。
+    timeline_streamer->setObjectName("timeline_streamer");
   timeline_thread = new QThread(this);
   timeline_streamer->moveToThread(timeline_thread); //動作スレッドを移動する。
   timeline_thread->start();
   // connect祭り
-  connect(timeline_streamer, &Streamer::newToot, this, &MainWindow::showToot);
+  auto nt = connect(timeline_streamer, &Streamer::newToot, this, &MainWindow::showToot);
+  connect(timeline_streamer, &Streamer::newToot, this, [](){
+              qDebug()<<"timeline_streamer new toot";
+          });
+    if(nt)
+        qDebug()<<"newtoo is valid";
+    else {
+            qDebug()<<"new toot is not valid";
+        }
   connect(timeline_streamer, &Streamer::deleteToot, this,
           &MainWindow::removeToot);
-  connect(timeline_streamer, &Streamer::newNotification, this,
+  auto nf = connect(timeline_streamer, &Streamer::newNotification, this,
           &MainWindow::showNotification);
+    if(nf)
+        qDebug()<<"newtoo noti is valid";
+    else {
+            qDebug()<<"newtoot noti is not valid";
+        }
   connect(timeline_streamer, &Streamer::abort, this,
           &MainWindow::abortedTimeLine);
   connect(timeline_thread, &QThread::finished, timeline_streamer,
@@ -570,6 +584,17 @@ void MainWindow::setAlwayTop(bool checked) {
  * 概要:主にStreamerより呼ばれる。
  */
 void MainWindow::showToot(TootData *tdata) {
+
+    qDebug()<<QThread::currentThread()<<__func__;
+    if(sender() == nullptr){
+
+        qDebug()<<__func__<< ": no sender";
+    } else {
+        qDebug()<<__func__<< ": from a connection.";
+        qDebug()<<"sender is: "<<sender()->objectName();
+    }
+
+
   if (tdata == nullptr)
     return;
   TootContent *content = new TootContent(

@@ -25,5 +25,6 @@ int main(int argc, char *argv[]) {
 
   QString setting_file(DEFAULT_SETTING_FILE_NAME);
   MainWindow window;
+    window.setObjectName("mainwindow");
   return window.init(setting_file) ? window.show(), app.exec() : EXIT_FAILURE;
 }

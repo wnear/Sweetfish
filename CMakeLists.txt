@@ -12,6 +12,7 @@ set(CMAKE_CXX_STANDARD 17)#C++17要求
 set(CMAKE_CXX_STANDARD_REQUIRED ON)#C++17でなければ中止
 set(CMAKE_CXX_EXTENSIONS OFF)#独自拡張のライブラリリンク防止
 
+set(CMAKE_PREFIX_PATH /usr/local/Qt/5.15.2/gcc_64/lib/cmake)
 # Find the Qt library
 find_package(Qt5 CONFIG REQUIRED Core Widgets Network LinguistTools)
 

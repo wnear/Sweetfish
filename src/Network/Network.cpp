@@ -38,8 +38,10 @@ QNetworkReply *Network::get(const QUrl &url) {
  * 概要:渡されたQNetworkRequestを使ってGETリクエストを送る。受信は戻り値であるQNetworkReplyポインタを使う。
  */
 QNetworkReply *Network::get(QNetworkRequest &req) {
-  req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
+    qDebug()<<"try to get requst of url:"<<req.url();
+    req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
     req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
+
   return qnet.get(req);
 }
 

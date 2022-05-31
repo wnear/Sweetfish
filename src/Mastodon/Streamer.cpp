@@ -8,6 +8,7 @@
 #include "MastodonAPI.h"
 #include "TootData.h"
 #include <QJsonArray>
+#include <QThread>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QNetworkReply>
@@ -134,6 +135,7 @@ void Streamer::readStream() {
   }
 
   if (tdata != nullptr) {
+        qDebug()<<QThread::currentThread()<<__func__;
     return emit newToot(tdata);
   }
   if (nfdata != nullptr) {
