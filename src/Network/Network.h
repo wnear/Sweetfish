@@ -13,19 +13,19 @@ class QByteArray;
 class QNetworkDiskCache;
 
 class Network {
-public:
-  Network();
-  ~Network();
-  QNetworkReply *get(const QUrl &url);
-  QNetworkReply *get(QNetworkRequest &req, bool useCache = false);
-  QNetworkReply *post(const QUrl &url, const QByteArray &data);
-  QNetworkReply *post(QNetworkRequest &req, const QByteArray &data);
-  QNetworkReply *upload(QNetworkRequest &req, const QByteArrayList &info, QIODevice &data);
-  QNetworkReply *del(const QUrl &url);
-  QNetworkReply *del(QNetworkRequest &req);
+  public:
+    Network();
+    ~Network();
+    QNetworkReply *get(const QUrl &url);
+    QNetworkReply *get(QNetworkRequest &req, bool useCache = false);
+    QNetworkReply *post(const QUrl &url, const QByteArray &data);
+    QNetworkReply *post(QNetworkRequest &req, const QByteArray &data);
+    QNetworkReply *upload(QNetworkRequest &req, const QByteArrayList &info, QIODevice &data);
+    QNetworkReply *del(const QUrl &url);
+    QNetworkReply *del(QNetworkRequest &req);
 
-private:
-  QNetworkAccessManager qnet;
-  QNetworkDiskCache *cache{nullptr};
-  inline QByteArray getUserAgent() const;
+  private:
+    QNetworkAccessManager qnet;
+    QNetworkDiskCache *cache{nullptr};
+    inline QByteArray getUserAgent() const;
 };

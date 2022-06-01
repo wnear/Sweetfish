@@ -23,14 +23,14 @@ ImageLabel::ImageLabel(const unsigned int init_sizex, const unsigned int init_si
  * 概要:渡されたURLでキャッシュを探し見つかった場合はそこから設定する。
  */
 bool ImageLabel::setPixmapByName(const QString &target_url) {
-  url = target_url;
-  const QHash<QString, QPixmap>::iterator image = images.find(url);
-  if (image == images.end()) {
-    if (images.size() > 256) images.clear();  //ここらで一回全部消してメモリの使用を減らす
-    return false;
-  }
-  setPixmap(image.value());
-  return true;
+    url = target_url;
+    const QHash<QString, QPixmap>::iterator image = images.find(url);
+    if (image == images.end()) {
+        if (images.size() > 256) images.clear();  //ここらで一回全部消してメモリの使用を減らす
+        return false;
+    }
+    setPixmap(image.value());
+    return true;
 }
 
 /*
@@ -39,16 +39,16 @@ bool ImageLabel::setPixmapByName(const QString &target_url) {
  * 概要:QNetworkReplyのfinishedによって呼ばれる。画像の設定、キャッシュへ登録を行う。
  */
 void ImageLabel::setPixmapByNetwork() {
-  QNetworkReply *rep = qobject_cast<QNetworkReply *>(sender());
-  QPixmap p;
+    QNetworkReply *rep = qobject_cast<QNetworkReply *>(sender());
+    QPixmap p;
 
-  rep->deleteLater();  // returnしたあとに削除される
-  if (rep->error() != QNetworkReply::NoError || !p.loadFromData(rep->readAll())) return;
-  if (sizex && sizey) {
-    p = p.scaled(sizex, sizey, Qt::KeepAspectRatio);  //縮小
-    images[url] = p;
-  }
-  setPixmap(p);
+    rep->deleteLater();  // returnしたあとに削除される
+    if (rep->error() != QNetworkReply::NoError || !p.loadFromData(rep->readAll())) return;
+    if (sizex && sizey) {
+        p = p.scaled(sizex, sizey, Qt::KeepAspectRatio);  //縮小
+        images[url] = p;
+    }
+    setPixmap(p);
 }
 
 /*
@@ -57,8 +57,8 @@ void ImageLabel::setPixmapByNetwork() {
  * 概要:縮小サイズを更新するときに使う。
  */
 void ImageLabel::setSize(unsigned int new_sizex, unsigned int new_sizey) {
-  sizex = new_sizex;
-  sizey = new_sizey;
+    sizex = new_sizex;
+    sizey = new_sizey;
 }
 
 /*
@@ -67,8 +67,8 @@ void ImageLabel::setSize(unsigned int new_sizex, unsigned int new_sizey) {
  * 概要:縮小サイズを取得するときに使う。
  */
 void ImageLabel::getSize(unsigned int &ref_sizex, unsigned int &ref_sizey) {
-  ref_sizex = sizex;
-  ref_sizey = sizey;
+    ref_sizex = sizex;
+    ref_sizey = sizey;
 }
 
 /*
@@ -92,16 +92,16 @@ void ImageLabel::setIndex(unsigned int i) { index = i; }
  * 備考:ダブルクリックはmouseDoubleClickEventになる。
  */
 void ImageLabel::mousePressEvent(QMouseEvent *event) {
-  switch (event->button()) {
-    case Qt::LeftButton:
-      emit clicked(index);
-      break;
-    case Qt::RightButton:
-      emit rightClicked(index);
-      break;
-    default:
-      event->ignore();
-      return;
-  }
-  event->accept();
+    switch (event->button()) {
+        case Qt::LeftButton:
+            emit clicked(index);
+            break;
+        case Qt::RightButton:
+            emit rightClicked(index);
+            break;
+        default:
+            event->ignore();
+            return;
+    }
+    event->accept();
 }

@@ -23,10 +23,10 @@ MastodonAPI::~MastodonAPI() {}
  * 概要:対象インスタンスにアプリを登録する。
  */
 QNetworkReply *MastodonAPI::registerApp(const QString &domain) {
-  QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::register_app);
-  return net.post(req, QByteArray("client_name=" APP_NAME_LONG "&redirect_uris=urn:ietf:wg:oauth:2.0:oob&scopes="
-                                  "read write follow&website=" APP_HOMEPAGE));
+    QNetworkRequest req;
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::register_app);
+    return net.post(req, QByteArray("client_name=" APP_NAME_LONG "&redirect_uris=urn:ietf:wg:oauth:2.0:oob&scopes="
+                                    "read write follow&website=" APP_HOMEPAGE));
 }
 
 /*
@@ -35,10 +35,10 @@ QNetworkReply *MastodonAPI::registerApp(const QString &domain) {
  * 概要:対象インスタンスでのユーザー認証URLを作成する。
  */
 QUrl MastodonAPI::getAuthorizeUrl(const QString &domain, const QString &client_id) const {
-  return QUrl(MastodonUrl::scheme + domain + MastodonUrl::authorize +
-              "response_type=code&redirect_uri=urn:ietf:wg:oauth:2.0:oob&scope="
-              "read write follow&client_id=" +
-              client_id);
+    return QUrl(MastodonUrl::scheme + domain + MastodonUrl::authorize +
+                "response_type=code&redirect_uri=urn:ietf:wg:oauth:2.0:oob&scope="
+                "read write follow&client_id=" +
+                client_id);
 }
 
 /*
@@ -50,12 +50,12 @@ QUrl MastodonAPI::getAuthorizeUrl(const QString &domain, const QString &client_i
  */
 QNetworkReply *MastodonAPI::requestAccessToken(const QString &domain, const QByteArray &client_id, const QByteArray &client_secret,
                                                const QString &authorization_token_code) {
-  QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::token);
-  return net.post(req,
-                  "grant_type=authorization_code&redirect_uri=urn:ietf:wg:"
-                  "oauth:2.0:oob&client_id=" +
-                      client_id + "&client_secret=" + client_secret + "&code=" + authorization_token_code.toUtf8());
+    QNetworkRequest req;
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::token);
+    return net.post(req,
+                    "grant_type=authorization_code&redirect_uri=urn:ietf:wg:"
+                    "oauth:2.0:oob&client_id=" +
+                        client_id + "&client_secret=" + client_secret + "&code=" + authorization_token_code.toUtf8());
 }
 
 /*
@@ -92,16 +92,16 @@ QByteArray MastodonAPI::getUserId() const { return user_id; }
  * 概要:HomeTimeを取得。
  */
 QNetworkReply *MastodonAPI::requestHomeTimeLine(const QByteArray &since_id) {
-  QNetworkRequest req;
-  QUrl qurl(MastodonUrl::scheme + domain + MastodonUrl::home_timeline);
-  QUrlQuery qurl_query;
+    QNetworkRequest req;
+    QUrl qurl(MastodonUrl::scheme + domain + MastodonUrl::home_timeline);
+    QUrlQuery qurl_query;
 
-  if (!since_id.isEmpty()) {
-    qurl_query.addQueryItem("since_id", since_id);
-  }
-  qurl.setQuery(qurl_query);
-  req.setUrl(qurl);
-  return get(req);
+    if (!since_id.isEmpty()) {
+        qurl_query.addQueryItem("since_id", since_id);
+    }
+    qurl.setQuery(qurl_query);
+    req.setUrl(qurl);
+    return get(req);
 }
 
 /*
@@ -110,10 +110,10 @@ QNetworkReply *MastodonAPI::requestHomeTimeLine(const QByteArray &since_id) {
  * 概要:user_Stream、いわゆるタイムラインのストリーム。
  */
 QNetworkReply *MastodonAPI::requestUserStream() {
-  QNetworkRequest req;
+    QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::user_stream);
-  return get(req);
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::user_stream);
+    return get(req);
 }
 
 /*
@@ -122,21 +122,21 @@ QNetworkReply *MastodonAPI::requestUserStream() {
  * 概要:messageをトゥートする。
  */
 QNetworkReply *MastodonAPI::requestToot(const QString &message, const QByteArray &media_id, const QByteArray &reply_id) {
-  QByteArray body("status=" + QUrl::toPercentEncoding(message));
-  QNetworkRequest req;
+    QByteArray body("status=" + QUrl::toPercentEncoding(message));
+    QNetworkRequest req;
 
-  if (!media_id.isEmpty()) {
-    for (const QString &id : media_id.split(',')) {
-      if (!id.isEmpty()) {
-        body.append("&media_ids[]=" + id);
-      }
+    if (!media_id.isEmpty()) {
+        for (const QString &id : media_id.split(',')) {
+            if (!id.isEmpty()) {
+                body.append("&media_ids[]=" + id);
+            }
+        }
     }
-  }
-  if (!reply_id.isEmpty()) {
-    body.append("&in_reply_to_id=" + reply_id);
-  }
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses);
-  return post(req, body);
+    if (!reply_id.isEmpty()) {
+        body.append("&in_reply_to_id=" + reply_id);
+    }
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses);
+    return post(req, body);
 }
 
 /*
@@ -145,11 +145,11 @@ QNetworkReply *MastodonAPI::requestToot(const QString &message, const QByteArray
  * 概要:該当idの投稿を削除する。自分の発言かどうかのチェックはしてない。
  */
 QNetworkReply *MastodonAPI::requestDeleteToot(const QByteArray &id) {
-  QNetworkRequest req;
+    QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id);
-  //送信(Delete)
-  return del(req);
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id);
+    //送信(Delete)
+    return del(req);
 }
 
 /*
@@ -158,11 +158,11 @@ QNetworkReply *MastodonAPI::requestDeleteToot(const QByteArray &id) {
  * 概要:idをブーストをする。
  */
 QNetworkReply *MastodonAPI::requestBoost(const QByteArray &id) {
-  QNetworkRequest req;
+    QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id + MastodonUrl::reblog);
-  //送信(Delete)
-  return post(req, QByteArray());
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id + MastodonUrl::reblog);
+    //送信(Delete)
+    return post(req, QByteArray());
 }
 
 /*
@@ -171,11 +171,11 @@ QNetworkReply *MastodonAPI::requestBoost(const QByteArray &id) {
  * 概要:idをお気に入りに登録する。
  */
 QNetworkReply *MastodonAPI::requestFavourite(const QByteArray &id) {
-  QNetworkRequest req;
+    QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id + MastodonUrl::favourite);
-  //送信(Delete)
-  return post(req, QByteArray());
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id + MastodonUrl::favourite);
+    //送信(Delete)
+    return post(req, QByteArray());
 }
 
 /*
@@ -184,10 +184,10 @@ QNetworkReply *MastodonAPI::requestFavourite(const QByteArray &id) {
  * 概要:アプリ認証をしたアカウントの情報を取得する。
  */
 QNetworkReply *MastodonAPI::requestCurrentAccountInfo() {
-  QNetworkRequest req;
+    QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::current_account);
-  return get(req);
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::current_account);
+    return get(req);
 }
 
 /*
@@ -196,10 +196,10 @@ QNetworkReply *MastodonAPI::requestCurrentAccountInfo() {
  * 概要:指定したUserIDの投稿一覧を取得する。
  */
 QNetworkReply *MastodonAPI::requestUserStatuses(const QByteArray &user_id) {
-  QNetworkRequest req;
+    QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_status);
-  return get(req);
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_status);
+    return get(req);
 }
 
 /*
@@ -208,11 +208,11 @@ QNetworkReply *MastodonAPI::requestUserStatuses(const QByteArray &user_id) {
  * 概要:指定したUserIDと利用中のアカウントの関係を取得する。(注意:結果は配列で帰る)
  */
 QNetworkReply *MastodonAPI::requestUserRelationship(const QByteArray &user_id) {
-  QNetworkRequest req;
+    QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts_relationship + "?id[]=" + user_id);
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts_relationship + "?id[]=" + user_id);
 
-  return get(req);
+    return get(req);
 }
 
 /*
@@ -221,9 +221,9 @@ QNetworkReply *MastodonAPI::requestUserRelationship(const QByteArray &user_id) {
  * 概要:指定したUserIDをフォローする
  */
 QNetworkReply *MastodonAPI::requestFollow(const QByteArray &user_id) {
-  QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_follow);
-  return post(req, QByteArray());
+    QNetworkRequest req;
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_follow);
+    return post(req, QByteArray());
 }
 
 /*
@@ -232,9 +232,9 @@ QNetworkReply *MastodonAPI::requestFollow(const QByteArray &user_id) {
  * 概要:指定したUserIDのフォローを解除する
  */
 QNetworkReply *MastodonAPI::requestUnfollow(const QByteArray &user_id) {
-  QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_unfollow);
-  return post(req, QByteArray());
+    QNetworkRequest req;
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_unfollow);
+    return post(req, QByteArray());
 }
 
 /*
@@ -243,9 +243,9 @@ QNetworkReply *MastodonAPI::requestUnfollow(const QByteArray &user_id) {
  * 概要:指定したUserIDをブロックする
  */
 QNetworkReply *MastodonAPI::requestBlock(const QByteArray &user_id) {
-  QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_block);
-  return post(req, QByteArray());
+    QNetworkRequest req;
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_block);
+    return post(req, QByteArray());
 }
 
 /*
@@ -254,9 +254,9 @@ QNetworkReply *MastodonAPI::requestBlock(const QByteArray &user_id) {
  * 概要:指定したUserIDのブロックを解除する
  */
 QNetworkReply *MastodonAPI::requestUnblock(const QByteArray &user_id) {
-  QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_unblock);
-  return post(req, QByteArray());
+    QNetworkRequest req;
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_unblock);
+    return post(req, QByteArray());
 }
 
 /*
@@ -265,13 +265,13 @@ QNetworkReply *MastodonAPI::requestUnblock(const QByteArray &user_id) {
  * 概要:メディアのアップロードを行う。postdataはQHttpMultiPartなどを使いmultipart/form-data形式にすること。
  */
 QNetworkReply *MastodonAPI::requestMediaUpload(QIODevice &data, const QByteArray &mime_type) {
-  QNetworkRequest req;
-  QList<QByteArrayList> upload_data;
+    QNetworkRequest req;
+    QList<QByteArrayList> upload_data;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::media_upload);
-  //アップロードリスト作成
-  //送信
-  return upload(req, QByteArrayList({"file", "upload" /*暫定*/, mime_type}), data);
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::media_upload);
+    //アップロードリスト作成
+    //送信
+    return upload(req, QByteArrayList({"file", "upload" /*暫定*/, mime_type}), data);
 }
 
 /*
@@ -280,10 +280,10 @@ QNetworkReply *MastodonAPI::requestMediaUpload(QIODevice &data, const QByteArray
  * 概要:Listの一覧を取得する。
  */
 QNetworkReply *MastodonAPI::requestGetLists() {
-  QNetworkRequest req;
+    QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::lists);
-  return get(req);
+    req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::lists);
+    return get(req);
 }
 
 /*
@@ -292,8 +292,8 @@ QNetworkReply *MastodonAPI::requestGetLists() {
  * 概要:Authorizationヘッダを作成。AccessTokenがないときは使用しない。
  */
 QNetworkReply *MastodonAPI::get(QNetworkRequest &req) {
-  req.setRawHeader("Authorization", "Bearer " + access_token);
-  return net.get(req);
+    req.setRawHeader("Authorization", "Bearer " + access_token);
+    return net.get(req);
 }
 
 /*
@@ -302,8 +302,8 @@ QNetworkReply *MastodonAPI::get(QNetworkRequest &req) {
  * 概要:Authorizationヘッダを作成。AccessTokenがないときは使用しない。
  */
 QNetworkReply *MastodonAPI::post(QNetworkRequest &req, const QByteArray &data) {
-  req.setRawHeader("Authorization", "Bearer " + access_token);
-  return net.post(req, data);
+    req.setRawHeader("Authorization", "Bearer " + access_token);
+    return net.post(req, data);
 }
 
 /*
@@ -314,8 +314,8 @@ QNetworkReply *MastodonAPI::post(QNetworkRequest &req, const QByteArray &data) {
  * 概要:Authorizationヘッダを作成。AccessTokenがないときは使用しない。
  */
 QNetworkReply *MastodonAPI::upload(QNetworkRequest &req, const QByteArrayList &info, QIODevice &data) {
-  req.setRawHeader("Authorization", "Bearer " + access_token);
-  return net.upload(req, info, data);
+    req.setRawHeader("Authorization", "Bearer " + access_token);
+    return net.upload(req, info, data);
 }
 
 /*
@@ -324,6 +324,6 @@ QNetworkReply *MastodonAPI::upload(QNetworkRequest &req, const QByteArrayList &i
  * 概要:Authorizationヘッダを作成。AccessTokenがないときは使用しない。
  */
 QNetworkReply *MastodonAPI::del(QNetworkRequest &req) {
-  req.setRawHeader("Authorization", "Bearer " + access_token);
-  return net.del(req);
+    req.setRawHeader("Authorization", "Bearer " + access_token);
+    return net.del(req);
 }

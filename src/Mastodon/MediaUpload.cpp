@@ -22,10 +22,10 @@ MediaUpload::~MediaUpload() {}
  * 概要:アップロード作業を開始する。
  */
 bool MediaUpload::start() {
-  if (mastodon_api == nullptr || !list.size() || !mimetype.size()) return false;
-  connect(mastodon_api->requestMediaUpload(*list.at(counter), mimetype.at(counter)), &QNetworkReply::finished, this,
-          &MediaUpload::next);
-  return true;
+    if (mastodon_api == nullptr || !list.size() || !mimetype.size()) return false;
+    connect(mastodon_api->requestMediaUpload(*list.at(counter), mimetype.at(counter)), &QNetworkReply::finished, this,
+            &MediaUpload::next);
+    return true;
 }
 
 /*
@@ -34,22 +34,22 @@ bool MediaUpload::start() {
  * 概要:次のファイルを上げる。
  */
 void MediaUpload::next() {
-  QNetworkReply *rep = qobject_cast<QNetworkReply *>(sender());
-  rep->deleteLater();
-  if (rep->error() != QNetworkReply::NetworkError::NoError) {
-    return emit aborted();
-  }
-  id += QJsonDocument::fromJson(rep->readAll()).object()["id"].toString().toUtf8() + ",";
+    QNetworkReply *rep = qobject_cast<QNetworkReply *>(sender());
+    rep->deleteLater();
+    if (rep->error() != QNetworkReply::NetworkError::NoError) {
+        return emit aborted();
+    }
+    id += QJsonDocument::fromJson(rep->readAll()).object()["id"].toString().toUtf8() + ",";
 
-  list.at(counter)->close();
-  delete list.at(counter);
+    list.at(counter)->close();
+    delete list.at(counter);
 
-  counter++;
-  if (counter >= list.count()) {
-    emit finished(id);
-  } else {
-    start();
-  }
+    counter++;
+    if (counter >= list.count()) {
+        emit finished(id);
+    } else {
+        start();
+    }
 }
 
 /*
@@ -58,6 +58,6 @@ void MediaUpload::next() {
  * 概要:再試行する。失敗したファイルを上げ直す
  */
 void MediaUpload::retry() {
-  start();
-  return;
+    start();
+    return;
 }

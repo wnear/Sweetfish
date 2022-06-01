@@ -21,37 +21,37 @@ TextLabel::TextLabel(const QString &text, QWidget *parent, Qt::WindowFlags f) : 
  * 概要:文字を表示するときに呼ばれる。
  */
 void TextLabel::paintEvent(QPaintEvent *event) {
-  QFrame::paintEvent(event);
+    QFrame::paintEvent(event);
 
-  QPainter paint(this);
-  int leading = paint.fontMetrics().leading(), w = width(), total_height = 0;
-  QTextOption text_option;
+    QPainter paint(this);
+    int leading = paint.fontMetrics().leading(), w = width(), total_height = 0;
+    QTextOption text_option;
 
-  paint.setRenderHint(QPainter::TextAntialiasing);
-  text_option.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
-  // TextOption.setWrapMode(QTextOption::WrapAnywhere);
+    paint.setRenderHint(QPainter::TextAntialiasing);
+    text_option.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
+    // TextOption.setWrapMode(QTextOption::WrapAnywhere);
 
-  for (QString &line : string) {
-    QTextLayout Layout(line, paint.font());
-    Layout.setTextOption(text_option);
-    Layout.setCacheEnabled(true);
-    Layout.beginLayout();
-    for (unsigned int h = 0;;) {
-      QTextLine Line = Layout.createLine();
-      if (!Line.isValid()) {
-        Layout.endLayout();
-        Layout.draw(&paint, QPoint(0, total_height));
-        total_height += h;
-        break;
-      }
-      Line.setLineWidth(w);
-      h += leading;
-      Line.setPosition(QPoint(0, h));
-      h += Line.height();
+    for (QString &line : string) {
+        QTextLayout Layout(line, paint.font());
+        Layout.setTextOption(text_option);
+        Layout.setCacheEnabled(true);
+        Layout.beginLayout();
+        for (unsigned int h = 0;;) {
+            QTextLine Line = Layout.createLine();
+            if (!Line.isValid()) {
+                Layout.endLayout();
+                Layout.draw(&paint, QPoint(0, total_height));
+                total_height += h;
+                break;
+            }
+            Line.setLineWidth(w);
+            h += leading;
+            Line.setPosition(QPoint(0, h));
+            h += Line.height();
+        }
     }
-  }
-  setFixedHeight(total_height);  //これ肝
-  return;
+    setFixedHeight(total_height);  //これ肝
+    return;
 }
 
 /*
@@ -67,8 +67,8 @@ QSize TextLabel::sizeHint() const { return QSize(width(), height()); }
  * 概要:文字列をセットして描画し直す。
  */
 void TextLabel::setText(const QString &text) {
-  string = text.split('\n');
-  update();
+    string = text.split('\n');
+    update();
 }
 
 /*
@@ -77,7 +77,7 @@ void TextLabel::setText(const QString &text) {
  * 概要:表示されてる文字列を返す。
  */
 QString TextLabel::text() const {
-  QString result;
-  for (const QString &line : string) result += line;
-  return result;
+    QString result;
+    for (const QString &line : string) result += line;
+    return result;
 }

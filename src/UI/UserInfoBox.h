@@ -18,28 +18,28 @@ class QVBoxLayout;
 class QMenu;
 
 class UserInfoBox : public QMainWindow {
-  Q_OBJECT
-public:
-  explicit UserInfoBox(const TootAccountData &user_data, MainWindow *rw, Qt::WindowFlags f = Qt::WindowFlags());
-  virtual ~UserInfoBox();
+    Q_OBJECT
+  public:
+    explicit UserInfoBox(const TootAccountData &user_data, MainWindow *rw, Qt::WindowFlags f = Qt::WindowFlags());
+    virtual ~UserInfoBox();
 
-  void show();
-public slots:
-  void showTimeLine();
-  void showRelationship();
+    void show();
+  public slots:
+    void showTimeLine();
+    void showRelationship();
 
-private:
-  virtual void mousePressEvent(QMouseEvent *event) override;
-  void createNameBox();
-  void createInfoBox();
-  void createMenu();
-  void resetRelationInfo();
-  MainWindow *root_window;
-  TootAccountData user;
-  TootRelationshipData relation;
-  MastodonAPI *mstdn;
-  QVBoxLayout *main_layout;
-  QVBoxLayout *infobox_layout;
-  QVBoxLayout *relationinfo_layout;
-  QMenu *menu;
+  private:
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    void createNameBox();
+    void createInfoBox();
+    void createMenu();
+    void resetRelationInfo();
+    MainWindow *root_window;
+    TootAccountData user;
+    TootRelationshipData relation;
+    MastodonAPI *mstdn;
+    QVBoxLayout *main_layout;
+    QVBoxLayout *infobox_layout;
+    QVBoxLayout *relationinfo_layout;
+    QMenu *menu;
 };

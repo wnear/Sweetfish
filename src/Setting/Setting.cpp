@@ -17,12 +17,12 @@ Setting::~Setting() {}
  * 概要:ini_file_nameの保存場所のフルパスを返す
  */
 QString Setting::getFilePath(const QString &ini_file_name) const {
-  QDir setting_dir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
-  if (!setting_dir.exists(APP_NAME)) {
-    setting_dir.mkdir(APP_NAME);
-  }
-  setting_dir.cd(APP_NAME);
-  return setting_dir.filePath(ini_file_name);
+    QDir setting_dir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation));
+    if (!setting_dir.exists(APP_NAME)) {
+        setting_dir.mkdir(APP_NAME);
+    }
+    setting_dir.cd(APP_NAME);
+    return setting_dir.filePath(ini_file_name);
 }
 
 /*

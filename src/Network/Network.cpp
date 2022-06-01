@@ -16,21 +16,21 @@ namespace {
 static QMimeDatabase db;
 
 bool shouldcache(const QString &path) {
-  qDebug() << "query for mimetype for fie: " << path;
-  auto mm = db.mimeTypesForFileName(path);
-  if (mm.length()) {
-    if (mm[0].inherits("image/jpeg") || mm[0].inherits("image/png")) return true;
-  }
-  return false;
+    qDebug() << "query for mimetype for fie: " << path;
+    auto mm = db.mimeTypesForFileName(path);
+    if (mm.length()) {
+        if (mm[0].inherits("image/jpeg") || mm[0].inherits("image/png")) return true;
+    }
+    return false;
 }
 }  // namespace
 
 static QString s_cacheDir = QStringLiteral("/home/bill/Pictures/sweetfish-cache");
 Network::Network() {
-  this->cache = new QNetworkDiskCache(&this->qnet);
-  cache->setCacheDirectory(s_cacheDir);
-  cache->setMaximumCacheSize(100 * 1024 * 1024);
-  qnet.setCache(cache);
+    this->cache = new QNetworkDiskCache(&this->qnet);
+    cache->setCacheDirectory(s_cacheDir);
+    cache->setMaximumCacheSize(100 * 1024 * 1024);
+    qnet.setCache(cache);
 }
 
 Network::~Network() {}
@@ -41,9 +41,9 @@ Network::~Network() {}
  * 概要:渡されたurlにGETリクエストを送る。受信は戻り値であるQNetworkReplyポインタを使う。
  */
 QNetworkReply *Network::get(const QUrl &url) {
-  QNetworkRequest req;
-  req.setUrl(url);
-  return get(req);
+    QNetworkRequest req;
+    req.setUrl(url);
+    return get(req);
 }
 
 /*
@@ -52,15 +52,15 @@ QNetworkReply *Network::get(const QUrl &url) {
  * 概要:渡されたQNetworkRequestを使ってGETリクエストを送る。受信は戻り値であるQNetworkReplyポインタを使う。
  */
 QNetworkReply *Network::get(QNetworkRequest &req, bool useCache) {
-  qDebug() << "try to get requst of url:" << req.url();
-  QString path = req.url().path();
+    qDebug() << "try to get requst of url:" << req.url();
+    QString path = req.url().path();
 
-  if (useCache || shouldcache(path)) {
-    qDebug() << "prefer cache";
-    req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
-  }
-  req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
-  return qnet.get(req);
+    if (useCache || shouldcache(path)) {
+        qDebug() << "prefer cache";
+        req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
+    }
+    req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
+    return qnet.get(req);
 }
 
 /*
@@ -69,9 +69,9 @@ QNetworkReply *Network::get(QNetworkRequest &req, bool useCache) {
  * 概要:渡されたurlとdataを使ってPOSTリクエストを送る。受信は戻り値であるQNetworkReplyポインタを使う。
  */
 QNetworkReply *Network::post(const QUrl &url, const QByteArray &data) {
-  QNetworkRequest req;
-  req.setUrl(url);
-  return post(req, data);
+    QNetworkRequest req;
+    req.setUrl(url);
+    return post(req, data);
 }
 
 /*
@@ -80,10 +80,10 @@ QNetworkReply *Network::post(const QUrl &url, const QByteArray &data) {
  * 概要:渡されたQNetworkRequestlとdataを使ってPOSTリクエストを送る。受信は戻り値であるQNetworkReplyポインタを使う。
  */
 QNetworkReply *Network::post(QNetworkRequest &req, const QByteArray &data) {
-  req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
-  // req.setRawHeader("Content-Length", data.size());
-  req.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-  return qnet.post(req, data);
+    req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
+    // req.setRawHeader("Content-Length", data.size());
+    req.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    return qnet.post(req, data);
 }
 
 /*
@@ -94,22 +94,22 @@ QNetworkReply *Network::post(QNetworkRequest &req, const QByteArray &data) {
  * info=>QByteArrayList(0:title, 1:file_name, 2:mime_type)
  */
 QNetworkReply *Network::upload(QNetworkRequest &req, const QByteArrayList &info, QIODevice &data) {
-  req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
-  QHttpMultiPart *multiformPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
-  if (info.size() != 3) return nullptr;  //無効
-  QHttpPart dataPart;
-  if (!info.at(1).isEmpty()) {
-    dataPart.setHeader(QNetworkRequest::ContentDispositionHeader,
-                       QVariant("form-data; name=\"" + info.at(0) + "\"; filename=\"" + info.at(1) + "\""));
-  } else {
-    dataPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"" + info.at(0) + "\""));
-  }
-  dataPart.setHeader(QNetworkRequest::ContentTypeHeader, QVariant(info.at(2)));
-  dataPart.setBodyDevice(&data);
-  multiformPart->append(dataPart);
-  QNetworkReply *rep = qnet.post(req, multiformPart);
-  multiformPart->setParent(rep);
-  return rep;
+    req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
+    QHttpMultiPart *multiformPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
+    if (info.size() != 3) return nullptr;  //無効
+    QHttpPart dataPart;
+    if (!info.at(1).isEmpty()) {
+        dataPart.setHeader(QNetworkRequest::ContentDispositionHeader,
+                           QVariant("form-data; name=\"" + info.at(0) + "\"; filename=\"" + info.at(1) + "\""));
+    } else {
+        dataPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"" + info.at(0) + "\""));
+    }
+    dataPart.setHeader(QNetworkRequest::ContentTypeHeader, QVariant(info.at(2)));
+    dataPart.setBodyDevice(&data);
+    multiformPart->append(dataPart);
+    QNetworkReply *rep = qnet.post(req, multiformPart);
+    multiformPart->setParent(rep);
+    return rep;
 }
 
 /*
@@ -118,9 +118,9 @@ QNetworkReply *Network::upload(QNetworkRequest &req, const QByteArrayList &info,
  * 概要:渡されたurlにDELETEリクエストを送る。受信は戻り値であるQNetworkReplyポインタを使う。
  */
 QNetworkReply *Network::del(const QUrl &url) {
-  QNetworkRequest req;
-  req.setUrl(url);
-  return del(req);
+    QNetworkRequest req;
+    req.setUrl(url);
+    return del(req);
 }
 
 /*
@@ -129,8 +129,8 @@ QNetworkReply *Network::del(const QUrl &url) {
  * 概要:渡されたQNetworkRequestを使ってDELETEリクエストを送る。受信は戻り値であるQNetworkReplyポインタを使う。
  */
 QNetworkReply *Network::del(QNetworkRequest &req) {
-  req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
-  return qnet.deleteResource(req);
+    req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
+    return qnet.deleteResource(req);
 }
 
 /*
