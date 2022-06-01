@@ -25,12 +25,11 @@ class QPushButton;
 class VideoPlayer : public QWidget {
   Q_OBJECT
 public:
-  explicit VideoPlayer(TootData *twdata, QWidget *parent = Q_NULLPTR,
-                       Qt::WindowFlags f = Qt::WindowFlags());
+  explicit VideoPlayer(TootData *twdata, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
 
 public slots:
   void show();
-  void save(){}; //未実装
+  void save(){};  //未実装
 private:
   void createButtons(QVBoxLayout *main_layout);
   TootMediaData media_data;

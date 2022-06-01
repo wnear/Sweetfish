@@ -20,8 +20,7 @@ class QMenu;
 class UserInfoBox : public QMainWindow {
   Q_OBJECT
 public:
-  explicit UserInfoBox(const TootAccountData &user_data, MainWindow *rw,
-                       Qt::WindowFlags f = Qt::WindowFlags());
+  explicit UserInfoBox(const TootAccountData &user_data, MainWindow *rw, Qt::WindowFlags f = Qt::WindowFlags());
   virtual ~UserInfoBox();
 
   void show();

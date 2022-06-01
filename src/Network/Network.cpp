@@ -9,14 +9,28 @@
 #include <QNetworkReply>
 #include <QNetworkRequest>
 #include <QNetworkDiskCache>
+#include <QMimeData>
+#include <QMimeDatabase>
+
+namespace {
+static QMimeDatabase db;
+
+bool shouldcache(const QString &path) {
+  qDebug() << "query for mimetype for fie: " << path;
+  auto mm = db.mimeTypesForFileName(path);
+  if (mm.length()) {
+    if (mm[0].inherits("image/jpeg") || mm[0].inherits("image/png")) return true;
+  }
+  return false;
+}
+}  // namespace
 
 static QString s_cacheDir = QStringLiteral("/home/bill/Pictures/sweetfish-cache");
 Network::Network() {
-    this->cache = new QNetworkDiskCache(&this->qnet);
-    cache->setCacheDirectory(s_cacheDir);
-    cache->setMaximumCacheSize(100*1024*1024);
-    qnet.setCache(cache);
-
+  this->cache = new QNetworkDiskCache(&this->qnet);
+  cache->setCacheDirectory(s_cacheDir);
+  cache->setMaximumCacheSize(100 * 1024 * 1024);
+  qnet.setCache(cache);
 }
 
 Network::~Network() {}
@@ -37,11 +51,15 @@ QNetworkReply *Network::get(const QUrl &url) {
  * 戻値:データを受け取るためのQNetworkReplyのポインタ
  * 概要:渡されたQNetworkRequestを使ってGETリクエストを送る。受信は戻り値であるQNetworkReplyポインタを使う。
  */
-QNetworkReply *Network::get(QNetworkRequest &req) {
-    qDebug()<<"try to get requst of url:"<<req.url();
-    req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
-    req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
+QNetworkReply *Network::get(QNetworkRequest &req, bool useCache) {
+  qDebug() << "try to get requst of url:" << req.url();
+  QString path = req.url().path();
 
+  if (useCache || shouldcache(path)) {
+    qDebug() << "prefer cache";
+    req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferCache);
+  }
+  req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
   return qnet.get(req);
 }
 
@@ -64,8 +82,7 @@ QNetworkReply *Network::post(const QUrl &url, const QByteArray &data) {
 QNetworkReply *Network::post(QNetworkRequest &req, const QByteArray &data) {
   req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
   // req.setRawHeader("Content-Length", data.size());
-  req.setHeader(QNetworkRequest::ContentTypeHeader,
-                "application/x-www-form-urlencoded");
+  req.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
   return qnet.post(req, data);
 }
 
@@ -76,21 +93,16 @@ QNetworkReply *Network::post(QNetworkRequest &req, const QByteArray &data) {
  * 概要:渡されたQNetworkRequestlとdataを使ってmultipart/form-data形式のPOSTリクエストを送る。
  * info=>QByteArrayList(0:title, 1:file_name, 2:mime_type)
  */
-QNetworkReply *Network::upload(QNetworkRequest &req, const QByteArrayList &info,
-                               QIODevice &data) {
+QNetworkReply *Network::upload(QNetworkRequest &req, const QByteArrayList &info, QIODevice &data) {
   req.setHeader(QNetworkRequest::UserAgentHeader, getUserAgent());
-  QHttpMultiPart *multiformPart =
-      new QHttpMultiPart(QHttpMultiPart::FormDataType);
-  if (info.size() != 3)
-    return nullptr; //無効
+  QHttpMultiPart *multiformPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
+  if (info.size() != 3) return nullptr;  //無効
   QHttpPart dataPart;
   if (!info.at(1).isEmpty()) {
     dataPart.setHeader(QNetworkRequest::ContentDispositionHeader,
-                       QVariant("form-data; name=\"" + info.at(0) +
-                                "\"; filename=\"" + info.at(1) + "\""));
+                       QVariant("form-data; name=\"" + info.at(0) + "\"; filename=\"" + info.at(1) + "\""));
   } else {
-    dataPart.setHeader(QNetworkRequest::ContentDispositionHeader,
-                       QVariant("form-data; name=\"" + info.at(0) + "\""));
+    dataPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"" + info.at(0) + "\""));
   }
   dataPart.setHeader(QNetworkRequest::ContentTypeHeader, QVariant(info.at(2)));
   dataPart.setBodyDevice(&data);

@@ -17,11 +17,10 @@ public:
   Network();
   ~Network();
   QNetworkReply *get(const QUrl &url);
-  QNetworkReply *get(QNetworkRequest &req);
+  QNetworkReply *get(QNetworkRequest &req, bool useCache = false);
   QNetworkReply *post(const QUrl &url, const QByteArray &data);
   QNetworkReply *post(QNetworkRequest &req, const QByteArray &data);
-  QNetworkReply *upload(QNetworkRequest &req, const QByteArrayList &info,
-                        QIODevice &data);
+  QNetworkReply *upload(QNetworkRequest &req, const QByteArrayList &info, QIODevice &data);
   QNetworkReply *del(const QUrl &url);
   QNetworkReply *del(QNetworkRequest &req);
 

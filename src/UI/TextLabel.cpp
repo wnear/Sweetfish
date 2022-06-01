@@ -13,8 +13,7 @@
 #include <QTextOption>
 #include <QDebug>
 
-TextLabel::TextLabel(const QString &text, QWidget *parent, Qt::WindowFlags f)
-    : QFrame(parent, f), string(text.split('\n')) {}
+TextLabel::TextLabel(const QString &text, QWidget *parent, Qt::WindowFlags f) : QFrame(parent, f), string(text.split('\n')) {}
 
 /*
  * 引数:event
@@ -51,7 +50,7 @@ void TextLabel::paintEvent(QPaintEvent *event) {
       h += Line.height();
     }
   }
-  setFixedHeight(total_height); //これ肝
+  setFixedHeight(total_height);  //これ肝
   return;
 }
 
@@ -79,7 +78,6 @@ void TextLabel::setText(const QString &text) {
  */
 QString TextLabel::text() const {
   QString result;
-  for (const QString &line : string)
-    result += line;
+  for (const QString &line : string) result += line;
   return result;
 }

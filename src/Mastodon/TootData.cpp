@@ -24,8 +24,7 @@ TootCardData::TootCardData(const QJsonObject &target) {
 }
 
 TootAccountData::TootAccountData(const QJsonObject &target) {
-  if (target.isEmpty())
-    return;
+  if (target.isEmpty()) return;
   id = target["id"].toString().toLatin1();
   user_name = target["username"].toString();
   display_name = target["display_name"].toString();
@@ -33,7 +32,7 @@ TootAccountData::TootAccountData(const QJsonObject &target) {
     display_name = user_name;
   }
   acct = target["acct"].toString();
-  avatar = target["avatar"].toString(); //アイコン
+  avatar = target["avatar"].toString();  //アイコン
   following_count = target["following_count"].toInt();
   followers_count = target["followers_count"].toInt();
   locked = target["locked"].toBool();
@@ -46,8 +45,7 @@ TootAccountData::TootAccountData(const QJsonObject &target) {
  * 概要:投稿したユーザ情報を返す。ブーストなどはブースト元のアカウント情報を返す。
  */
 const TootAccountData &TootData::getOriginalAccountData() const {
-  if (m_reblog != nullptr)
-    return m_reblog->m_account;
+  if (m_reblog != nullptr) return m_reblog->m_account;
   return m_account;
 }
 
@@ -63,8 +61,7 @@ TootRelationshipData::TootRelationshipData(const QJsonObject &target) {
  * 戻値:なし
  * 概要:エントリーを追加する。TootDataからの呼び出しを想定。
  */
-void TootUrlData::addUrlPair(const QString &display_url,
-                             const QString &full_url) {
+void TootUrlData::addUrlPair(const QString &display_url, const QString &full_url) {
   data.append(QPair<QString, QString>(display_url, full_url));
 }
 
@@ -73,18 +70,14 @@ void TootUrlData::addUrlPair(const QString &display_url,
  * 戻値:QString(表示してるURLなど)
  * 概要:指定されたindexの表示用URLを返す。indexが範囲外ならば空文字を返す。
  */
-QString TootUrlData::getDisplayUrl(unsigned int index) const {
-  return (index < data.count()) ? data.at(index).first : QString();
-}
+QString TootUrlData::getDisplayUrl(unsigned int index) const { return (index < data.count()) ? data.at(index).first : QString(); }
 
 /*
  * 引数:index(0から始まるエントリー数)
  * 戻値:QString(完全なリンク)
  * 概要:指定されたindexの完全なリンクを返す。indexが範囲外ならば空文字を返す。
  */
-QString TootUrlData::getFullUrl(unsigned int index) const {
-  return (index < data.count()) ? data.at(index).second : QString();
-}
+QString TootUrlData::getFullUrl(unsigned int index) const { return (index < data.count()) ? data.at(index).second : QString(); }
 
 TootMediaData::TootMediaData(const QJsonArray &target) {
   for (const QJsonValue &entry : target) {
@@ -100,16 +93,13 @@ TootMediaData::TootMediaData(const QJsonArray &target) {
 }
 
 TootData::TootData(const QJsonObject &target) {
-  if (target.find("id") == target.end())
-    return;
+  if (target.find("id") == target.end()) return;
   m_id = target["id"].toString().toLatin1();
   m_created_at.setTimeSpec(Qt::UTC);
-  m_created_at =
-      QDateTime::fromString(target["created_at"].toString(), Qt::ISODateWithMs);
+  m_created_at = QDateTime::fromString(target["created_at"].toString(), Qt::ISODateWithMs);
 
   QJsonObject application_json = target["application"].toObject();
-  m_application = QPair<QString, QString>(application_json["name"].toString(),
-                                        application_json["website"].toString());
+  m_application = QPair<QString, QString>(application_json["name"].toString(), application_json["website"].toString());
   m_uri = target["uri"].toString();
   m_url = target["url"].toString();
   analyzeContent(target["content"].toString());
@@ -122,7 +112,7 @@ TootData::TootData(const QJsonObject &target) {
 
   m_flag = 0;
   if (target["reblogged"].toBool()) {
-    m_flag |= 1 << 0; //一般化
+    m_flag |= 1 << 0;  //一般化
   }
   if (target["favourited"].toBool()) {
     m_flag |= 1 << 1;
@@ -138,9 +128,9 @@ TootData::TootData(const QJsonObject &target) {
   }
 
   if (QJsonValue reblog_status = target["reblog"]; reblog_status.isObject()) {
-    QJsonObject reblog_object = reblog_status.toObject(); // constならいらない
+    QJsonObject reblog_object = reblog_status.toObject();  // constならいらない
     m_reblog = new TootData(reblog_object);
-    m_media = m_reblog->getMediaData(); //扱いやすいように
+    m_media = m_reblog->getMediaData();  //扱いやすいように
     m_content = m_reblog->getContent();
   }
   //製作中
@@ -211,11 +201,9 @@ void TootData::analyzeContent(QString c /*remove使うため参照ではない*/
       .replace("&gt;", ">")
       .replace("&lt;", "<")
       .replace("&amp;", "&")
-      .replace("&quot;", "\""); //見やすいように連結した。
+      .replace("&quot;", "\"");  //見やすいように連結した。
 
-  QRegularExpressionMatchIterator &&link_tags =
-      QRegularExpression("<a[^>]* href=\"([^\"]*)\"[^>]*>([^<]*)<\\/a>")
-          .globalMatch(c);
+  QRegularExpressionMatchIterator &&link_tags = QRegularExpression("<a[^>]* href=\"([^\"]*)\"[^>]*>([^<]*)<\\/a>").globalMatch(c);
   while (link_tags.hasNext()) {
     QRegularExpressionMatch entry = link_tags.next();
     m_url_list.addUrlPair(entry.captured(2), entry.captured(1));
@@ -229,13 +217,10 @@ void TootData::analyzeContent(QString c /*remove使うため参照ではない*/
  * 戻値:なし
  * 概要:トゥートが自分のものか判定するためのidを登録する。
  */
-void TootData::addOwnerUserId(const QByteArray &id) {
-  static_owner_user_id_list += id;
-}
+void TootData::addOwnerUserId(const QByteArray &id) { static_owner_user_id_list += id; }
 
 TootNotificationData::TootNotificationData(const QJsonObject &target) {
-  if (target.find("id") == target.end())
-    return;
+  if (target.find("id") == target.end()) return;
   QString &&type_str = target["type"].toString();
 
   // type判定

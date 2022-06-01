@@ -14,8 +14,7 @@
 #include <QNetworkReply>
 #include <QUrlQuery>
 
-Streamer::Streamer(QObject *parent)
-    : QObject(parent), mastodon_api(nullptr), reply(nullptr) {}
+Streamer::Streamer(QObject *parent) : QObject(parent), mastodon_api(nullptr), reply(nullptr) {}
 
 Streamer::~Streamer() {
   stopUserStream();
@@ -41,10 +40,8 @@ void Streamer::setMastodonAPI(const MastodonAPI *original_mastodon) {
  * 概要:user_streamを開始する。reply->closeするか、deleteするまで永遠と動く。
  */
 void Streamer::startUserStream() {
-  if (mastodon_api == nullptr)
-    return emit abort(BadPointer);
-  if (reply != nullptr && reply->isRunning())
-    return;
+  if (mastodon_api == nullptr) return emit abort(BadPointer);
+  if (reply != nullptr && reply->isRunning()) return;
   reply = mastodon_api->requestUserStream();
   if (reply->error() != QNetworkReply::NoError) {
     delete reply;
@@ -89,17 +86,13 @@ void Streamer::readStream() {
   for (cnt = 0; cnt < size; cnt++) {
     if (message_list.at(cnt).startsWith("event:")) {
       if (cnt + 2 >= size || !message_list.at(cnt + 2).isEmpty()) {
-        break; //まだ読み込み途中
+        break;  //まだ読み込み途中
       }
       // switch使いたい
-      QByteArray &&event_type =
-          message_list.at(cnt).right(message_list.at(cnt).size() - 7);
+      QByteArray &&event_type = message_list.at(cnt).right(message_list.at(cnt).size() - 7);
       if (event_type == "update") {
         cnt++;
-        tdata = new TootData(
-            QJsonDocument::fromJson(
-                message_list.at(cnt).right(message_list.at(cnt).size() - 6))
-                .object());
+        tdata = new TootData(QJsonDocument::fromJson(message_list.at(cnt).right(message_list.at(cnt).size() - 6)).object());
         cnt++;
         if (tdata->isEmpty()) {
           delete tdata;
@@ -107,10 +100,8 @@ void Streamer::readStream() {
         }
       } else if (event_type == "notification") {
         cnt++;
-        nfdata = new TootNotificationData(
-            QJsonDocument::fromJson(
-                message_list.at(cnt).right(message_list.at(cnt).size() - 6))
-                .object());
+        nfdata =
+            new TootNotificationData(QJsonDocument::fromJson(message_list.at(cnt).right(message_list.at(cnt).size() - 6)).object());
         cnt++;
         if (nfdata->isEmpty()) {
           delete nfdata;
@@ -135,7 +126,7 @@ void Streamer::readStream() {
   }
 
   if (tdata != nullptr) {
-        qDebug()<<QThread::currentThread()<<__func__;
+    qDebug() << QThread::currentThread() << __func__;
     return emit newToot(tdata);
   }
   if (nfdata != nullptr) {
@@ -154,9 +145,7 @@ void Streamer::readStream() {
 void Streamer::finishedStream() {
   if (reply) {
     QNetworkReply::NetworkError error = reply->error();
-    if (reply->isRunning())
-      stopUserStream();
-    if (error != QNetworkReply::OperationCanceledError)
-      emit abort(NetworkError);
+    if (reply->isRunning()) stopUserStream();
+    if (error != QNetworkReply::OperationCanceledError) emit abort(NetworkError);
   }
 }

@@ -13,8 +13,7 @@ class TextLabel : public QFrame {
   Q_OBJECT
   Q_PROPERTY(QString text READ text WRITE setText)
 public:
-  explicit TextLabel(const QString &text, QWidget *parent = Q_NULLPTR,
-                     Qt::WindowFlags f = Qt::WindowFlags());
+  explicit TextLabel(const QString &text, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
   QString text() const;
   virtual QSize sizeHint() const override;
 public slots:

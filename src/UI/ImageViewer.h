@@ -21,11 +21,8 @@ class QPushButton;
 class ImageViewer : public QWidget {
   Q_OBJECT
 public:
-  explicit ImageViewer(TootData *tdata, unsigned int index = 0,
-                       QWidget *parent = Q_NULLPTR,
-                       Qt::WindowFlags f = Qt::WindowFlags());
-  explicit ImageViewer(QStringList url_list, unsigned int index = 0,
-                       QWidget *parent = Q_NULLPTR,
+  explicit ImageViewer(TootData *tdata, unsigned int index = 0, QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
+  explicit ImageViewer(QStringList url_list, unsigned int index = 0, QWidget *parent = Q_NULLPTR,
                        Qt::WindowFlags f = Qt::WindowFlags());
 
 public slots:

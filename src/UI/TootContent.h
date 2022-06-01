@@ -19,17 +19,15 @@ class MainWindow;
 class TootContent : public QFrame {
   Q_OBJECT
 public:
-  enum Mode { //主にメニューの表示内容の制御
+  enum Mode {  //主にメニューの表示内容の制御
     Normal,
     Reply = 1 << 1,
     Info = 1 << 2,
     Simple = 1 << 3,
   };
 
-  explicit TootContent(TootData *init_tdata = nullptr,
-                       Mode init_mode = Mode::Normal,
-                       MainWindow *rw = Q_NULLPTR, QWidget *parent = Q_NULLPTR,
-                       Qt::WindowFlags f = Qt::WindowFlags());
+  explicit TootContent(TootData *init_tdata = nullptr, Mode init_mode = Mode::Normal, MainWindow *rw = Q_NULLPTR,
+                       QWidget *parent = Q_NULLPTR, Qt::WindowFlags f = Qt::WindowFlags());
   virtual ~TootContent();
   void setTootData(TootData *target_tdata, bool should_redraw = false);
   TootData *getTootData();

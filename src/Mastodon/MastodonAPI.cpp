@@ -13,8 +13,7 @@
 MastodonAPI::MastodonAPI() {}
 
 MastodonAPI::MastodonAPI(const MastodonAPI &other)
-    : user_id(other.user_id), access_token(other.access_token),
-      domain(other.domain) {}
+    : user_id(other.user_id), access_token(other.access_token), domain(other.domain) {}
 
 MastodonAPI::~MastodonAPI() {}
 
@@ -26,10 +25,8 @@ MastodonAPI::~MastodonAPI() {}
 QNetworkReply *MastodonAPI::registerApp(const QString &domain) {
   QNetworkRequest req;
   req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::register_app);
-  return net.post(req,
-                  QByteArray("client_name=" APP_NAME_LONG
-                             "&redirect_uris=urn:ietf:wg:oauth:2.0:oob&scopes="
-                             "read write follow&website=" APP_HOMEPAGE));
+  return net.post(req, QByteArray("client_name=" APP_NAME_LONG "&redirect_uris=urn:ietf:wg:oauth:2.0:oob&scopes="
+                                  "read write follow&website=" APP_HOMEPAGE));
 }
 
 /*
@@ -37,8 +34,7 @@ QNetworkReply *MastodonAPI::registerApp(const QString &domain) {
  * client_id(register_appで得たID) 戻値:ブラウザでアクセスしてもらうURL
  * 概要:対象インスタンスでのユーザー認証URLを作成する。
  */
-QUrl MastodonAPI::getAuthorizeUrl(const QString &domain,
-                                  const QString &client_id) const {
+QUrl MastodonAPI::getAuthorizeUrl(const QString &domain, const QString &client_id) const {
   return QUrl(MastodonUrl::scheme + domain + MastodonUrl::authorize +
               "response_type=code&redirect_uri=urn:ietf:wg:oauth:2.0:oob&scope="
               "read write follow&client_id=" +
@@ -52,15 +48,14 @@ QUrl MastodonAPI::getAuthorizeUrl(const QString &domain,
  * 戻値:受信用QNetworkReply
  * 概要:アクセストークンをもらうために認証コードを送る。
  */
-QNetworkReply *MastodonAPI::requestAccessToken(
-    const QString &domain, const QByteArray &client_id,
-    const QByteArray &client_secret, const QString &authorization_token_code) {
+QNetworkReply *MastodonAPI::requestAccessToken(const QString &domain, const QByteArray &client_id, const QByteArray &client_secret,
+                                               const QString &authorization_token_code) {
   QNetworkRequest req;
   req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::token);
-  return net.post(req, "grant_type=authorization_code&redirect_uri=urn:ietf:wg:"
-                       "oauth:2.0:oob&client_id=" +
-                           client_id + "&client_secret=" + client_secret +
-                           "&code=" + authorization_token_code.toUtf8());
+  return net.post(req,
+                  "grant_type=authorization_code&redirect_uri=urn:ietf:wg:"
+                  "oauth:2.0:oob&client_id=" +
+                      client_id + "&client_secret=" + client_secret + "&code=" + authorization_token_code.toUtf8());
 }
 
 /*
@@ -68,18 +63,14 @@ QNetworkReply *MastodonAPI::requestAccessToken(
  * 戻値:なし
  * 概要:アクセストークンを保存する。
  */
-void MastodonAPI::setAccessToken(const QByteArray &token) {
-  access_token = token;
-}
+void MastodonAPI::setAccessToken(const QByteArray &token) { access_token = token; }
 
 /*
  * 引数:domain(使用するMastodon インスタンスのFQDN)
  * 戻値:なし
  * 概要:使用するインスタンスのドメイン名をセットする。
  */
-void MastodonAPI::setInstanceDomain(const QString &instance_domain) {
-  domain = instance_domain;
-}
+void MastodonAPI::setInstanceDomain(const QString &instance_domain) { domain = instance_domain; }
 
 /*
  * 引数:user_id(アプリ認証をしたユーザのID)
@@ -130,9 +121,7 @@ QNetworkReply *MastodonAPI::requestUserStream() {
  * reply_id(返信先のID) 戻値:結果取得用のQNetworkReply
  * 概要:messageをトゥートする。
  */
-QNetworkReply *MastodonAPI::requestToot(const QString &message,
-                                        const QByteArray &media_id,
-                                        const QByteArray &reply_id) {
+QNetworkReply *MastodonAPI::requestToot(const QString &message, const QByteArray &media_id, const QByteArray &reply_id) {
   QByteArray body("status=" + QUrl::toPercentEncoding(message));
   QNetworkRequest req;
 
@@ -171,8 +160,7 @@ QNetworkReply *MastodonAPI::requestDeleteToot(const QByteArray &id) {
 QNetworkReply *MastodonAPI::requestBoost(const QByteArray &id) {
   QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id +
-             MastodonUrl::reblog);
+  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id + MastodonUrl::reblog);
   //送信(Delete)
   return post(req, QByteArray());
 }
@@ -185,8 +173,7 @@ QNetworkReply *MastodonAPI::requestBoost(const QByteArray &id) {
 QNetworkReply *MastodonAPI::requestFavourite(const QByteArray &id) {
   QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id +
-             MastodonUrl::favourite);
+  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::statuses + "/" + id + MastodonUrl::favourite);
   //送信(Delete)
   return post(req, QByteArray());
 }
@@ -211,8 +198,7 @@ QNetworkReply *MastodonAPI::requestCurrentAccountInfo() {
 QNetworkReply *MastodonAPI::requestUserStatuses(const QByteArray &user_id) {
   QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id +
-             MastodonUrl::accounts_status);
+  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_status);
   return get(req);
 }
 
@@ -224,8 +210,7 @@ QNetworkReply *MastodonAPI::requestUserStatuses(const QByteArray &user_id) {
 QNetworkReply *MastodonAPI::requestUserRelationship(const QByteArray &user_id) {
   QNetworkRequest req;
 
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts_relationship +
-             "?id[]=" + user_id);
+  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts_relationship + "?id[]=" + user_id);
 
   return get(req);
 }
@@ -237,8 +222,7 @@ QNetworkReply *MastodonAPI::requestUserRelationship(const QByteArray &user_id) {
  */
 QNetworkReply *MastodonAPI::requestFollow(const QByteArray &user_id) {
   QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id +
-             MastodonUrl::accounts_follow);
+  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_follow);
   return post(req, QByteArray());
 }
 
@@ -249,8 +233,7 @@ QNetworkReply *MastodonAPI::requestFollow(const QByteArray &user_id) {
  */
 QNetworkReply *MastodonAPI::requestUnfollow(const QByteArray &user_id) {
   QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id +
-             MastodonUrl::accounts_unfollow);
+  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_unfollow);
   return post(req, QByteArray());
 }
 
@@ -261,8 +244,7 @@ QNetworkReply *MastodonAPI::requestUnfollow(const QByteArray &user_id) {
  */
 QNetworkReply *MastodonAPI::requestBlock(const QByteArray &user_id) {
   QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id +
-             MastodonUrl::accounts_block);
+  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_block);
   return post(req, QByteArray());
 }
 
@@ -273,8 +255,7 @@ QNetworkReply *MastodonAPI::requestBlock(const QByteArray &user_id) {
  */
 QNetworkReply *MastodonAPI::requestUnblock(const QByteArray &user_id) {
   QNetworkRequest req;
-  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id +
-             MastodonUrl::accounts_unblock);
+  req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::accounts + user_id + MastodonUrl::accounts_unblock);
   return post(req, QByteArray());
 }
 
@@ -283,16 +264,14 @@ QNetworkReply *MastodonAPI::requestUnblock(const QByteArray &user_id) {
  * 戻値:結果取得用のQNetworkReply
  * 概要:メディアのアップロードを行う。postdataはQHttpMultiPartなどを使いmultipart/form-data形式にすること。
  */
-QNetworkReply *MastodonAPI::requestMediaUpload(QIODevice &data,
-                                               const QByteArray &mime_type) {
+QNetworkReply *MastodonAPI::requestMediaUpload(QIODevice &data, const QByteArray &mime_type) {
   QNetworkRequest req;
   QList<QByteArrayList> upload_data;
 
   req.setUrl(MastodonUrl::scheme + domain + MastodonUrl::media_upload);
   //アップロードリスト作成
   //送信
-  return upload(req, QByteArrayList({"file", "upload" /*暫定*/, mime_type}),
-                data);
+  return upload(req, QByteArrayList({"file", "upload" /*暫定*/, mime_type}), data);
 }
 
 /*
@@ -334,9 +313,7 @@ QNetworkReply *MastodonAPI::post(QNetworkRequest &req, const QByteArray &data) {
  * 戻値:受信用QNetworkReply
  * 概要:Authorizationヘッダを作成。AccessTokenがないときは使用しない。
  */
-QNetworkReply *MastodonAPI::upload(QNetworkRequest &req,
-                                   const QByteArrayList &info,
-                                   QIODevice &data) {
+QNetworkReply *MastodonAPI::upload(QNetworkRequest &req, const QByteArrayList &info, QIODevice &data) {
   req.setRawHeader("Authorization", "Bearer " + access_token);
   return net.upload(req, info, data);
 }

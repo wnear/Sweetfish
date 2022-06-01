@@ -22,19 +22,15 @@ public:
   //認証関係
   QNetworkReply *registerApp(const QString &domain);
   QUrl getAuthorizeUrl(const QString &domain, const QString &client_id) const;
-  QNetworkReply *requestAccessToken(const QString &domain,
-                                    const QByteArray &client_id,
-                                    const QByteArray &client_secret,
+  QNetworkReply *requestAccessToken(const QString &domain, const QByteArray &client_id, const QByteArray &client_secret,
                                     const QString &authorization_token_code);
   void setAccessToken(const QByteArray &token);
   void setInstanceDomain(const QString &instance_domain);
   void setUserId(const QByteArray &id);
   QByteArray getUserId() const;
   //トゥート関係
-  QNetworkReply *requestToot(
-      const QString &message,
-      const QByteArray &media_id = QByteArray() /*ポインタのほうがいいかな...*/,
-      const QByteArray &reply_id = QByteArray());
+  QNetworkReply *requestToot(const QString &message, const QByteArray &media_id = QByteArray() /*ポインタのほうがいいかな...*/,
+                             const QByteArray &reply_id = QByteArray());
   QNetworkReply *requestDeleteToot(const QByteArray &id);
   QNetworkReply *requestBoost(const QByteArray &id);
   QNetworkReply *requestFavourite(const QByteArray &id);
@@ -42,8 +38,7 @@ public:
   QNetworkReply *requestHomeTimeLine(const QByteArray &since_id = QByteArray());
   QNetworkReply *requestUserStream();
   //メディア関係
-  QNetworkReply *requestMediaUpload(QIODevice &data,
-                                    const QByteArray &mime_type);
+  QNetworkReply *requestMediaUpload(QIODevice &data, const QByteArray &mime_type);
   //リスト関係
   QNetworkReply *requestGetLists();
   //ユーザ関係
@@ -60,8 +55,7 @@ private:
   QNetworkReply *get(QNetworkRequest &req);
   QNetworkReply *post(QNetworkRequest &req, const QByteArray &data);
   QNetworkReply *del(QNetworkRequest &req);
-  QNetworkReply *upload(QNetworkRequest &req, const QByteArrayList &info,
-                        QIODevice &data);
+  QNetworkReply *upload(QNetworkRequest &req, const QByteArrayList &info, QIODevice &data);
 
   QByteArray user_id;
   QByteArray access_token;

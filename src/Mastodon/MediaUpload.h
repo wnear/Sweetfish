@@ -17,8 +17,7 @@ class QIODevice;
 class MediaUpload : public QObject {
   Q_OBJECT
 public:
-  explicit MediaUpload(QList<QIODevice *> _list /*upload後にfreeされる*/,
-                       const QByteArrayList &mime, MastodonAPI *m,
+  explicit MediaUpload(QList<QIODevice *> _list /*upload後にfreeされる*/, const QByteArrayList &mime, MastodonAPI *m,
                        QObject *parent = Q_NULLPTR);
   virtual ~MediaUpload();
   bool start();
@@ -34,8 +33,8 @@ public slots:
 private:
   QList<QIODevice *> list;
   QByteArrayList mimetype;
-  QByteArray id;       //=media_ids
-  QByteArray media_id; //操作中のmedia_id
+  QByteArray id;        //=media_ids
+  QByteArray media_id;  //操作中のmedia_id
   MastodonAPI *mastodon_api;
   unsigned int counter;
 };

@@ -29,10 +29,10 @@ public:
 
 private:
   QByteArray id;
-  QString user_name; //スクリーンネーム(ABC)
-  QString acct;      //インスタンス名を含むユーザ名
+  QString user_name;  //スクリーンネーム(ABC)
+  QString acct;       //インスタンス名を含むユーザ名
   QString display_name;
-  QString avatar; //ユーザアイコン
+  QString avatar;  //ユーザアイコン
   QString description;
   unsigned int following_count;
   unsigned int followers_count;
@@ -107,9 +107,7 @@ public:
   TootMediaData(){};
   explicit TootMediaData(const QJsonArray &target);
   unsigned int size() const { return media_list.size(); };
-  TootMediaDataEntry getEntry(unsigned int index) const {
-    return media_list.at(index);
-  };
+  TootMediaDataEntry getEntry(unsigned int index) const { return media_list.at(index); };
 
 private:
   QVector<TootMediaDataEntry> media_list;
@@ -163,7 +161,7 @@ private:
   QString m_uri;
   QString m_url;
   QString m_content;
-  QPair<QString, QString> m_application; // via
+  QPair<QString, QString> m_application;  // via
   qint64 m_flag;
 
   TootAccountData m_account;
@@ -174,13 +172,12 @@ private:
 
   void analyzeContent(QString content);
 
-  static QByteArrayList
-      static_owner_user_id_list; //あまりいい方法ではない気もする...
+  static QByteArrayList static_owner_user_id_list;  //あまりいい方法ではない気もする...
 };
 
 class TootNotificationData {
 public:
-  enum Event { //使いそうなやつだけ
+  enum Event {  //使いそうなやつだけ
     NoEvent,
     Mention,
     Boost,

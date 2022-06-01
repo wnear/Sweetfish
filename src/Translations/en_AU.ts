@@ -53,143 +53,142 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="99"/>
+        <location filename="../UI/MainWindow.cpp" line="100"/>
         <source>マストドンアプリの認証を行いますか。</source>
         <translation>Authorize with Mastodon?</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="103"/>
+        <location filename="../UI/MainWindow.cpp" line="104"/>
         <source>マストドンアプリの認証を行わなければこのソフトウェアは使用できません。</source>
         <translation>This software requires authenticating with Mastodon.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="139"/>
+        <location filename="../UI/MainWindow.cpp" line="140"/>
         <source>設定(&amp;S)</source>
         <translation>&amp;Settings</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="142"/>
+        <location filename="../UI/MainWindow.cpp" line="143"/>
         <source>ストリーム接続(&amp;S)</source>
         <translation>Auto-&amp;refresh</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="147"/>
+        <location filename="../UI/MainWindow.cpp" line="148"/>
         <source>チェックされるとストリームに接続し、外されると切断します。</source>
         <translation>Automatically gets the latest posts from your feed.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="150"/>
+        <location filename="../UI/MainWindow.cpp" line="151"/>
         <source>終了(&amp;E)</source>
         <translation>&amp;Quit</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="152"/>
+        <location filename="../UI/MainWindow.cpp" line="153"/>
         <source>すべてのウィンドウを閉じ、アプリケーションを終了します。</source>
         <translation>Closes all windows and exits the application.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="155"/>
+        <location filename="../UI/MainWindow.cpp" line="156"/>
         <source>表示(&amp;V)</source>
         <translation>&amp;View</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="157"/>
+        <location filename="../UI/MainWindow.cpp" line="158"/>
         <source>ホーム(&amp;H)</source>
         <translation>&amp;Home</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="158"/>
+        <location filename="../UI/MainWindow.cpp" line="162"/>
         <source>リスト(&amp;L)</source>
         <translation>&amp;Lists</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="161"/>
+        <location filename="../UI/MainWindow.cpp" line="165"/>
         <source>ウィンドウ(&amp;W)</source>
         <translation>&amp;Window</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="166"/>
+        <location filename="../UI/MainWindow.cpp" line="170"/>
         <source>常に最前面に表示(&amp;A)</source>
         <translation>&amp;Always on top</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="168"/>
+        <location filename="../UI/MainWindow.cpp" line="172"/>
         <source>常にこのウィンドウを手前に表示します。(ウィンドウマネージャで設定できる場合はそちらで設定してください。)</source>
         <translation>Keeps the window floating above other windows.(If possible, set this in your window manager instead.)</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="173"/>
+        <location filename="../UI/MainWindow.cpp" line="177"/>
         <source>ヘルプ(&amp;H)</source>
         <translation>&amp;Help</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="178"/>
+        <location filename="../UI/MainWindow.cpp" line="182"/>
         <source>このソフトウェアについて(&amp;A)</source>
         <translation>&amp;About this software</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="181"/>
+        <location filename="../UI/MainWindow.cpp" line="185"/>
         <source>バージョンやライセンスについてのダイアログを表示します。</source>
         <translation>Displays version and license information.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="184"/>
+        <location filename="../UI/MainWindow.cpp" line="188"/>
         <source>Qtについて(&amp;Q)</source>
         <translation>About &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="185"/>
+        <location filename="../UI/MainWindow.cpp" line="189"/>
         <source>使用されているQtのライブラリのバージョンやライセンスについてのダイアログを表示します。</source>
         <translation>Displays version and license information about the Qt library in use.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="242"/>
         <source>タイムラインを更新します。</source>
-        <translation>Refresh the timeline.</translation>
+        <translation type="vanished">Refresh the timeline.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="251"/>
+        <location filename="../UI/MainWindow.cpp" line="249"/>
         <source>写真・動画を追加します。</source>
         <translation>Upload media.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="260"/>
+        <location filename="../UI/MainWindow.cpp" line="258"/>
         <source>トゥートを送信します。</source>
         <translation>Send Toot.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="281"/>
+        <location filename="../UI/MainWindow.cpp" line="279"/>
         <source>無効なドメイン名です。</source>
         <translation>Invalid domain name.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="289"/>
+        <location filename="../UI/MainWindow.cpp" line="287"/>
         <source>アプリケーションの登録に失敗しました。</source>
         <translation>Failed to register the application.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="298"/>
+        <location filename="../UI/MainWindow.cpp" line="296"/>
         <source>ブラウザの起動に失敗しました。</source>
         <translation>Failed to open a browser.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="302"/>
+        <location filename="../UI/MainWindow.cpp" line="300"/>
         <source>認証がキャンセルされました。</source>
         <translation>Authentication was cancelled.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="310"/>
+        <location filename="../UI/MainWindow.cpp" line="308"/>
         <source>アクセストークンの取得に失敗しました。</source>
         <translation>Couldn&apos;t get an access token.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="327"/>
+        <location filename="../UI/MainWindow.cpp" line="325"/>
         <source>ユーザ情報の取得に失敗しました。</source>
         <translation>Failed to get user information.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="351"/>
-        <location filename="../UI/MainWindow.cpp" line="372"/>
+        <location filename="../UI/MainWindow.cpp" line="349"/>
+        <location filename="../UI/MainWindow.cpp" line="370"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -200,48 +199,48 @@
  Ex) don.taprix.org</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="355"/>
+        <location filename="../UI/MainWindow.cpp" line="353"/>
         <source>認証するインスタンスのドメイン名を入力してください。(https://は不要です。)
 例) don.taprix.org</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="376"/>
+        <location filename="../UI/MainWindow.cpp" line="374"/>
         <source>表示されたブラウザでMastodonの認証して、表示された認証コードを入力してください。</source>
         <translation>Please log in to Mastodon and copy the authentication code into this window.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="398"/>
+        <location filename="../UI/MainWindow.cpp" line="396"/>
         <source>タイムラインに接続できませんでした。再接続しますか。</source>
         <translation>Could not connect to timeline. Reconnect?</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="402"/>
+        <location filename="../UI/MainWindow.cpp" line="400"/>
         <source>タイムラインから切断されました。再接続しますか。</source>
         <translation>Disconnected from the timeline. Reconnect?</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="406"/>
+        <location filename="../UI/MainWindow.cpp" line="404"/>
         <source>メモリアクセス違反が発生しました。</source>
         <translation>A memory access violation occured.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="409"/>
+        <location filename="../UI/MainWindow.cpp" line="407"/>
         <source>不明なエラーが発生しました。</source>
         <translation>An unknown error occured.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="519"/>
+        <location filename="../UI/MainWindow.cpp" line="517"/>
         <source>メディア追加</source>
         <translation>Add media.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="520"/>
+        <location filename="../UI/MainWindow.cpp" line="518"/>
         <source>メディア (*.png *.jpg *.gif *.bmp *.pbm *.pgm *.ppm *.xbm *.xpm *.svg)</source>
         <translation>Media (*.png *.jpg *.gif *.bmp *.pbm *.pgm *.ppm *.xbm *.xpm *.svg)</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="533"/>
+        <location filename="../UI/MainWindow.cpp" line="531"/>
         <source>サポートしていない画像です。</source>
         <translation>File type not supported.</translation>
     </message>
@@ -250,132 +249,132 @@
         <translation type="vanished">File too large.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="538"/>
-        <location filename="../UI/MainWindow.cpp" line="562"/>
+        <location filename="../UI/MainWindow.cpp" line="536"/>
+        <location filename="../UI/MainWindow.cpp" line="560"/>
         <source>４枚以上の画像は投稿できません。</source>
         <translation>You can only post 4 images at a time.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="654"/>
-        <location filename="../UI/MainWindow.cpp" line="662"/>
+        <location filename="../UI/MainWindow.cpp" line="652"/>
+        <location filename="../UI/MainWindow.cpp" line="660"/>
         <source>さんが</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="655"/>
+        <location filename="../UI/MainWindow.cpp" line="653"/>
         <source>以下のトゥートをお気に入りに登録しました。
 </source>
         <translation>added your toot to their favourites:
 </translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="657"/>
-        <location filename="../UI/MainWindow.cpp" line="665"/>
+        <location filename="../UI/MainWindow.cpp" line="655"/>
+        <location filename="../UI/MainWindow.cpp" line="663"/>
         <source>不明</source>
         <translation>Unknown</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="663"/>
+        <location filename="../UI/MainWindow.cpp" line="661"/>
         <source>以下のトゥートをブーストしました。
 </source>
         <translation>boosted the following toot:
 </translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="671"/>
+        <location filename="../UI/MainWindow.cpp" line="669"/>
         <source>さんがあなたに向けてトゥートしました。
 </source>
         <translation>mentioned you
 </translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="678"/>
+        <location filename="../UI/MainWindow.cpp" line="676"/>
         <source>さんがあなたをフォローしました。</source>
         <translation>followed you</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="713"/>
+        <location filename="../UI/MainWindow.cpp" line="711"/>
         <source>トゥートに失敗しました </source>
         <translation>Toot failed </translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="748"/>
+        <location filename="../UI/MainWindow.cpp" line="746"/>
         <source>作業に失敗しました </source>
         <translation>Operation failed </translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="834"/>
-        <location filename="../UI/MainWindow.cpp" line="842"/>
+        <location filename="../UI/MainWindow.cpp" line="838"/>
+        <location filename="../UI/MainWindow.cpp" line="846"/>
         <source>画像の読み込みに失敗しました。</source>
         <translation>Failed to load the image.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="854"/>
+        <location filename="../UI/MainWindow.cpp" line="858"/>
         <source>アップロード中にエラーが発生しました。再試行しますか。</source>
         <translation>Failed to upload. Try again?</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="863"/>
+        <location filename="../UI/MainWindow.cpp" line="867"/>
         <source>アップロードの初期化作業に失敗しました。</source>
         <translation>Failed to start the upload.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="928"/>
+        <location filename="../UI/MainWindow.cpp" line="932"/>
         <source>Qtを使用して製作されているMastodonクライアント。</source>
         <translation>Sweetfish is a Mastodon client written with Qt.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="931"/>
+        <location filename="../UI/MainWindow.cpp" line="935"/>
         <source>本ソフトウェアはQtオープンソース版のLGPLv3を選択しています。詳しくは&lt;a href=&quot;https://www.qt.io/licensing/&quot;&gt;https://www.qt.io/licensing/&lt;/a&gt;をご覧ください。</source>
         <translation>This software has chosen to use the LGPLv3  open source version  of Qt. For details, please see &lt;a href=&quot;https://www.qt.io/licensing/&quot;&gt; https://www.qt.io/licensing/ &lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="937"/>
+        <location filename="../UI/MainWindow.cpp" line="941"/>
         <source>License</source>
         <translation>License</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="954"/>
+        <location filename="../UI/MainWindow.cpp" line="958"/>
         <source>このソフトウェアについてのページを開く</source>
         <translation>Open the Sweetfish homepage.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="967"/>
+        <location filename="../UI/MainWindow.cpp" line="971"/>
         <source>このトゥートはすでにブーストしています。</source>
         <translation>This toot has already been boosted.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="970"/>
+        <location filename="../UI/MainWindow.cpp" line="974"/>
         <source>非公開のトゥートのためブーストできません。</source>
         <translation>Can&apos;t boost a private toot.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="973"/>
+        <location filename="../UI/MainWindow.cpp" line="977"/>
         <source>ダイレクトメッセージのためブーストできません。</source>
         <translation>Can&apos;t boost a personal message.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="990"/>
+        <location filename="../UI/MainWindow.cpp" line="994"/>
         <source>このトゥートはすでにお気に入りに登録しています。</source>
         <translation>You already favourited this toot.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="994"/>
+        <location filename="../UI/MainWindow.cpp" line="998"/>
         <source>さんのトゥートをお気に入りに登録しますか。</source>
         <translation>Favourite this toot?</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="1010"/>
+        <location filename="../UI/MainWindow.cpp" line="1014"/>
         <source>トゥートを削除しますか。</source>
         <translation>Do you want to delete this toot?</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="1028"/>
+        <location filename="../UI/MainWindow.cpp" line="1032"/>
         <source>非公開のトゥートのため引用できません。</source>
         <translation>Cannot quote a private toot.</translation>
     </message>
     <message>
-        <location filename="../UI/MainWindow.cpp" line="1031"/>
+        <location filename="../UI/MainWindow.cpp" line="1035"/>
         <source>ダイレクトメッセージのため引用できません。</source>
         <translation>Cannot quote a personal message.</translation>
     </message>
@@ -444,17 +443,17 @@
         <translation> boosted</translation>
     </message>
     <message>
-        <location filename="../UI/TootContent.cpp" line="412"/>
+        <location filename="../UI/TootContent.cpp" line="414"/>
         <source>著者:</source>
         <translation>Author:</translation>
     </message>
     <message>
-        <location filename="../UI/TootContent.cpp" line="424"/>
+        <location filename="../UI/TootContent.cpp" line="426"/>
         <source>提供者:</source>
         <translation>Provider:</translation>
     </message>
     <message>
-        <location filename="../UI/TootContent.cpp" line="490"/>
+        <location filename="../UI/TootContent.cpp" line="492"/>
         <source>トゥートの詳細 </source>
         <translation>Toot details - </translation>
     </message>

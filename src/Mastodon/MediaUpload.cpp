@@ -11,10 +11,8 @@
 #include <QNetworkReply>
 
 // MEMO:APIを叩くときはmastodonクラスを使う。(additional_owners対応したら面白いかも。)
-MediaUpload::MediaUpload(QList<QIODevice *> _list, const QByteArrayList &mime,
-                         MastodonAPI *m, QObject *parent)
-    : QObject(parent), list(_list), mimetype(mime), mastodon_api(m),
-      counter(0) {}
+MediaUpload::MediaUpload(QList<QIODevice *> _list, const QByteArrayList &mime, MastodonAPI *m, QObject *parent)
+    : QObject(parent), list(_list), mimetype(mime), mastodon_api(m), counter(0) {}
 
 MediaUpload::~MediaUpload() {}
 
@@ -24,11 +22,9 @@ MediaUpload::~MediaUpload() {}
  * 概要:アップロード作業を開始する。
  */
 bool MediaUpload::start() {
-  if (mastodon_api == nullptr || !list.size() || !mimetype.size())
-    return false;
-  connect(
-      mastodon_api->requestMediaUpload(*list.at(counter), mimetype.at(counter)),
-      &QNetworkReply::finished, this, &MediaUpload::next);
+  if (mastodon_api == nullptr || !list.size() || !mimetype.size()) return false;
+  connect(mastodon_api->requestMediaUpload(*list.at(counter), mimetype.at(counter)), &QNetworkReply::finished, this,
+          &MediaUpload::next);
   return true;
 }
 
@@ -43,11 +39,7 @@ void MediaUpload::next() {
   if (rep->error() != QNetworkReply::NetworkError::NoError) {
     return emit aborted();
   }
-  id += QJsonDocument::fromJson(rep->readAll())
-            .object()["id"]
-            .toString()
-            .toUtf8() +
-        ",";
+  id += QJsonDocument::fromJson(rep->readAll()).object()["id"].toString().toUtf8() + ",";
 
   list.at(counter)->close();
   delete list.at(counter);
