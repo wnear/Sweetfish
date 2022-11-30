@@ -75,6 +75,7 @@ void Streamer::stopUserStream() {
 void Streamer::readStream() {
     // https://developer.mozilla.org/ja/docs/Server-sent_events/Using_server-sent_events#Event_stream_format
     buffer += reply->readAll();
+    qDebug()<<"get stream data...";
     //もうちょっといい実装ありそう
     QList<QByteArray> &&message_list = buffer.split('\n');
     unsigned int cnt;
@@ -118,9 +119,7 @@ void Streamer::readStream() {
     if (cnt < size) {
         //遅そう
         for (; cnt < size; cnt++) {
-            if (!buffer.isEmpty()) {
-                buffer += '\n';
-            }
+            if (!buffer.isEmpty()) { buffer += '\n'; }
             buffer += message_list.at(cnt);
         }
     }
@@ -129,12 +128,8 @@ void Streamer::readStream() {
         qDebug() << QThread::currentThread() << __func__;
         return emit newToot(tdata);
     }
-    if (nfdata != nullptr) {
-        return emit newNotification(nfdata);
-    }
-    if (!delete_id.isEmpty()) {
-        return emit deleteToot(delete_id);
-    }
+    if (nfdata != nullptr) { return emit newNotification(nfdata); }
+    if (!delete_id.isEmpty()) { return emit deleteToot(delete_id); }
 }
 
 /*

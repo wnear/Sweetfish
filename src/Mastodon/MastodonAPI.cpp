@@ -93,6 +93,7 @@ QByteArray MastodonAPI::getUserId() const { return user_id; }
  */
 QNetworkReply *MastodonAPI::requestHomeTimeLine(const QByteArray &since_id) {
     QNetworkRequest req;
+    
     QUrl qurl(MastodonUrl::scheme + domain + MastodonUrl::home_timeline);
     QUrlQuery qurl_query;
 
@@ -101,7 +102,9 @@ QNetworkReply *MastodonAPI::requestHomeTimeLine(const QByteArray &since_id) {
     }
     qurl.setQuery(qurl_query);
     req.setUrl(qurl);
-    return get(req);
+    auto *rep = get(req);
+    rep->setObjectName("reply from mastondonapi");
+    return rep;
 }
 
 /*

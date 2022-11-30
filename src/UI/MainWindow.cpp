@@ -18,6 +18,7 @@
 #include <QJsonObject>
 #include <QNetworkReply>
 #include <QtWidgets>
+#include <QFile>
 
 // MEMO:trは翻訳する可能性のあるものに使う。
 // MEMO:mocのincludeはソースでQObjectの子クラスを作る場合に必要らしい
@@ -435,6 +436,7 @@ void MainWindow::setListsMenu() {
  * 概要:QNetworkReplyによって呼ばれる。requestHomeTimeLineの処理を行う。
  */
 void MainWindow::showTimeLine() {
+    qDebug()<<"ShowTimeLine"<<__LINE__;
     QNetworkReply *rep = qobject_cast<QNetworkReply *>(sender());
     if (rep->error() == QNetworkReply::NoError) {
         QJsonArray toots = QJsonDocument::fromJson(rep->readAll()).array();
@@ -442,7 +444,8 @@ void MainWindow::showTimeLine() {
         for (int i = toots.size() - 1; i >= 0; i--) {
             QJsonObject obj = toots[i].toObject();
             TootData *tdata = new TootData(obj);
-            if (!tdata->isEmpty()) showToot(tdata);
+            if (!tdata->isEmpty()) 
+                showToot(tdata);
         }
     }
     rep->deleteLater();
@@ -722,12 +725,26 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
 
 void MainWindow::loadData() {
     QString datafile = QDir(m_dataDirPath).filePath("data.json");
-    if (QFile(datafile).exists() == false)
+    QFile savefile(datafile);
+    if (savefile.exists() == false){ return; }
+    if(!savefile.open(QIODevice::ReadOnly)) { 
+        qWarning("could not open data file for load.");
         return;
-    else {
     }
+    auto data = savefile.readAll();
+    m_fileJsonObject = QJsonDocument::fromJson(data).object();
+    //todo m_fileJsonObject ==> timeline;
 }
-void MainWindow::saveData() { QString filepath = QDir(m_dataDirPath).filePath("data.json"); }
+void MainWindow::saveData() { 
+    QString filepath = QDir(m_dataDirPath).filePath("data.json");
+    QFile savefile(filepath);
+    if(!savefile.open(QIODevice::WriteOnly) ) {
+        qWarning("Could open the data file for save");
+        return;
+    }
+    //todo timeline => m_fileJsonObject;
+    savefile.write(QJsonDocument(m_fileJsonObject).toJson());
+}
 
 /*
  * 引数:event
